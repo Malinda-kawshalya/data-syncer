@@ -1,0 +1,6 @@
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\DataSyncer.Core.csproj.AssemblyReference.cache
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\DataSyncer.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\DataSyncer.Core.AssemblyInfoInputs.cache
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\DataSyncer.Core.AssemblyInfo.cs
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\DataSyncer.Core.csproj.CoreCompileInputs.cache
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\DataSyncer.Core.sourcelink.json
