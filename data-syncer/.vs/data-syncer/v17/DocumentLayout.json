@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "E:\\data syncer\\data-syncer\\data-syncer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|E:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -26,20 +30,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 110,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FormMain.Designer.cs",
-              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.Designer.cs",
-              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormMain.Designer.cs",
-              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.Designer.cs",
-              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormMain.Designer.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAswOAAAAAyAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "FormConnection.cs [Design]",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormConnection.cs",
+              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormConnection.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormConnection.cs [Design]",
+              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormConnection.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-08T17:48:56.157Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-08T18:51:46.781Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Bookmark",
@@ -55,7 +58,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
+              "Title": "FormMain.Designer.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.Designer.cs",
+              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormMain.Designer.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.Designer.cs",
+              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormMain.Designer.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAswOAAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-08T17:48:56.157Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "FormMain.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.cs",
               "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormMain.cs",
@@ -68,28 +83,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "FormMain.cs [Design]",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.cs",
               "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormMain.cs",
               "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.cs [Design]",
               "RelativeToolTip": "DataSyncer.WinFormsUI\\FormMain.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-08T17:32:45.405Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-08-08T17:32:45.405Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DataSyncer.WinFormsUI",
+              "DocumentIndex": 3,
+              "Title": "DataSyncer.WinFormsUI.csproj",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj",
               "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj",
               "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj",
               "RelativeToolTip": "DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-08-08T17:31:28.922Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-08T17:31:28.922Z"
             }
           ]
         }
