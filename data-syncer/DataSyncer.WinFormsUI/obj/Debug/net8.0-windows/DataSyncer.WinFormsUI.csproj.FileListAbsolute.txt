@@ -1,0 +1,17 @@
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\bin\Debug\net8.0-windows\DataSyncer.WinFormsUI.exe
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\bin\Debug\net8.0-windows\DataSyncer.WinFormsUI.deps.json
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\bin\Debug\net8.0-windows\DataSyncer.WinFormsUI.runtimeconfig.json
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\bin\Debug\net8.0-windows\DataSyncer.WinFormsUI.dll
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\bin\Debug\net8.0-windows\DataSyncer.WinFormsUI.pdb
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\DataSyncer.WinFormsUI.FormSchedule.resources
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\DataSyncer.WinFormsUI.csproj.GenerateResource.cache
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\DataSyncer.WinFormsUI.GeneratedMSBuildEditorConfig.editorconfig
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\DataSyncer.WinFormsUI.AssemblyInfoInputs.cache
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\DataSyncer.WinFormsUI.AssemblyInfo.cs
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\DataSyncer.WinFormsUI.csproj.CoreCompileInputs.cache
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\DataSyncer.WinFormsUI.sourcelink.json
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\DataSyncer.WinFormsUI.dll
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\refint\DataSyncer.WinFormsUI.dll
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\DataSyncer.WinFormsUI.pdb
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\DataSyncer.WinFormsUI.genruntimeconfig.cache
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\ref\DataSyncer.WinFormsUI.dll

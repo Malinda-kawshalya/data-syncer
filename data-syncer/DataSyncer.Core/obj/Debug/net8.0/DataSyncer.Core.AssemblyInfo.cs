@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DataSyncer.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f195bf1897498b9ba462fe76d2de72e678457e39")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b8efb9e9e92a1a6dd74a94fd7b511924907b12f0")]
 [assembly: System.Reflection.AssemblyProductAttribute("DataSyncer.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DataSyncer.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -7,7 +7,7 @@ using DataSyncer.Core.Models;
 
 namespace DataSyncer.Core.Services
 {
-    public class SftpTransferEngine : ITransferEngine
+    public class SftpTransferEngine : IFileTransferService
     {
         private readonly ConnectionSettings _connectionSettings;
         private readonly ILogger _logger;

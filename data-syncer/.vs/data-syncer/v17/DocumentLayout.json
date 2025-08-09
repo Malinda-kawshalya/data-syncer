@@ -3,24 +3,64 @@
   "WorkspaceRootPath": "E:\\data syncer\\data-syncer\\data-syncer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.core\\models\\transferlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|solutionrelative:datasyncer.core\\models\\transferlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.core\\models\\filtersettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|solutionrelative:datasyncer.core\\models\\filtersettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.core\\models\\schedulesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|solutionrelative:datasyncer.core\\models\\schedulesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.core\\models\\connectionsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|solutionrelative:datasyncer.core\\models\\connectionsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.core\\models\\fileitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|solutionrelative:datasyncer.core\\models\\fileitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.core\\interfaces\\ifiletransferservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|solutionrelative:datasyncer.core\\interfaces\\ifiletransferservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.core\\exceptions\\filetransferexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|solutionrelative:datasyncer.core\\exceptions\\filetransferexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|E:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formschedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formschedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formfilters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formfilters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\datasyncer.winformsui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\datasyncer.winformsui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formmain.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formmain.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formschedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formschedule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formlogs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formlogs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,24 +70,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 110,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FormConnection.cs [Design]",
-              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormConnection.cs",
-              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormConnection.cs",
-              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormConnection.cs [Design]",
-              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormConnection.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-08T18:51:46.781Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:639845889:0:{83107a3e-496a-485e-b455-16ddb978e55e}"
@@ -58,51 +82,201 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FormMain.Designer.cs",
-              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.Designer.cs",
-              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormMain.Designer.cs",
-              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.Designer.cs",
-              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormMain.Designer.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAswOAAAAAyAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "TransferLog.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\TransferLog.cs",
+              "RelativeDocumentMoniker": "DataSyncer.Core\\Models\\TransferLog.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\TransferLog.cs",
+              "RelativeToolTip": "DataSyncer.Core\\Models\\TransferLog.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAiwAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-08T17:48:56.157Z"
+              "WhenOpened": "2025-08-09T17:29:45.005Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FormMain.cs",
-              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.cs",
-              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormMain.cs",
-              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.cs",
-              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormMain.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAkwBQAAAA1AAAAAAAAAA==",
+              "Title": "FilterSettings.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\FilterSettings.cs",
+              "RelativeDocumentMoniker": "DataSyncer.Core\\Models\\FilterSettings.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\FilterSettings.cs",
+              "RelativeToolTip": "DataSyncer.Core\\Models\\FilterSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-08T17:33:06.953Z",
+              "WhenOpened": "2025-08-09T17:29:28.49Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "FormMain.cs [Design]",
-              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.cs",
-              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormMain.cs",
-              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.cs [Design]",
-              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormMain.cs [Design]",
+              "Title": "ScheduleSettings.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\ScheduleSettings.cs",
+              "RelativeDocumentMoniker": "DataSyncer.Core\\Models\\ScheduleSettings.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\ScheduleSettings.cs",
+              "RelativeToolTip": "DataSyncer.Core\\Models\\ScheduleSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-08T17:32:45.405Z"
+              "WhenOpened": "2025-08-09T17:29:05.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FileItem.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\FileItem.cs",
+              "RelativeDocumentMoniker": "DataSyncer.Core\\Models\\FileItem.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\FileItem.cs",
+              "RelativeToolTip": "DataSyncer.Core\\Models\\FileItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T17:28:23.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FileTransferException.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Exceptions\\FileTransferException.cs",
+              "RelativeDocumentMoniker": "DataSyncer.Core\\Exceptions\\FileTransferException.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Exceptions\\FileTransferException.cs",
+              "RelativeToolTip": "DataSyncer.Core\\Exceptions\\FileTransferException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T16:23:58.149Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "DataSyncer.WinFormsUI.csproj",
+              "Title": "ConnectionSettings.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\ConnectionSettings.cs",
+              "RelativeDocumentMoniker": "DataSyncer.Core\\Models\\ConnectionSettings.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\ConnectionSettings.cs",
+              "RelativeToolTip": "DataSyncer.Core\\Models\\ConnectionSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T16:22:50.818Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IFileTransferService.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Interfaces\\IFileTransferService.cs",
+              "RelativeDocumentMoniker": "DataSyncer.Core\\Interfaces\\IFileTransferService.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Interfaces\\IFileTransferService.cs",
+              "RelativeToolTip": "DataSyncer.Core\\Interfaces\\IFileTransferService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T16:22:30.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "FormSchedule.cs [Design]",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormSchedule.cs",
+              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormSchedule.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormSchedule.cs [Design]",
+              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormSchedule.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T16:11:28.951Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FormLogs.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormLogs.cs",
+              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormLogs.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormLogs.cs",
+              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormLogs.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAxwCwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T16:10:38.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FormFilters.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormFilters.cs",
+              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormFilters.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormFilters.cs",
+              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormFilters.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAxwCgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T16:10:09.872Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FormSchedule.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormSchedule.cs",
+              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormSchedule.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormSchedule.cs",
+              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormSchedule.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T16:09:47.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "FormConnection.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormConnection.cs",
+              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormConnection.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormConnection.cs",
+              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormConnection.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAxwDEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T16:09:22.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FormMain.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.cs",
+              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormMain.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.cs",
+              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormMain.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T16:08:54.993Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\Program.cs",
+              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\Program.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\Program.cs",
+              "RelativeToolTip": "DataSyncer.WinFormsUI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T16:04:37.238Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DataSyncer.WinFormsUI",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj",
               "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj",
               "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj",
               "RelativeToolTip": "DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-08-08T17:31:28.922Z"
+              "WhenOpened": "2025-08-09T16:04:32.414Z",
+              "EditorCaption": ""
             }
           ]
         }

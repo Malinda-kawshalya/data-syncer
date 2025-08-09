@@ -5,7 +5,7 @@ namespace DataSyncer.Core.Services
 {
     public static class TransferEngineFactory
     {
-        public static ITransferEngine CreateEngine(ConnectionSettings connectionSettings, ILogger logger)
+        public static IFileTransferService CreateEngine(ConnectionSettings connectionSettings, ILogger logger)
         {
             return connectionSettings.Protocol.ToUpper() switch
             {
