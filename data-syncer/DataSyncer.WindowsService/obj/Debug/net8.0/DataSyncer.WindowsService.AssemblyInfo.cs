@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DataSyncer.WindowsService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f195bf1897498b9ba462fe76d2de72e678457e39")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d7c4a2447e494356a03cd6052c5499d322703d9")]
 [assembly: System.Reflection.AssemblyProductAttribute("DataSyncer.WindowsService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DataSyncer.WindowsService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

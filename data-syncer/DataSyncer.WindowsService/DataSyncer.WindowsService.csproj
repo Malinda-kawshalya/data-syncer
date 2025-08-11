@@ -8,6 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentFTP" Version="53.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.8" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="9.0.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="6.0.3" />
+    <PackageReference Include="Quartz" Version="3.15.0" />
+    <PackageReference Include="Quartz.Extensions.Hosting" Version="3.15.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataSyncer.Core\DataSyncer.Core.csproj" />
+    <ProjectReference Include="..\DataSyncer.WinFormsUI\DataSyncer.WinFormsUI.csproj" />
   </ItemGroup>
 </Project>

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DataSyncer.WinFormsUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b8efb9e9e92a1a6dd74a94fd7b511924907b12f0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d7c4a2447e494356a03cd6052c5499d322703d9")]
 [assembly: System.Reflection.AssemblyProductAttribute("DataSyncer.WinFormsUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DataSyncer.WinFormsUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
