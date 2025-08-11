@@ -4,3 +4,11 @@ E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\DataSync
 E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\DataSyncer.Core.AssemblyInfo.cs
 E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\DataSyncer.Core.csproj.CoreCompileInputs.cache
 E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\DataSyncer.Core.sourcelink.json
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\bin\Debug\net8.0\NLog.config
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\bin\Debug\net8.0\DataSyncer.Core.deps.json
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\bin\Debug\net8.0\DataSyncer.Core.dll
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\bin\Debug\net8.0\DataSyncer.Core.pdb
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\DataSyncer.Core.dll
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\refint\DataSyncer.Core.dll
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\DataSyncer.Core.pdb
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0\ref\DataSyncer.Core.dll

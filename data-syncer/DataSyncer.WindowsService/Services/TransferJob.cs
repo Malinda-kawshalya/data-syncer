@@ -3,11 +3,10 @@ using Microsoft.Extensions.Logging;
 using Quartz;
 using DataSyncer.Core.Interfaces;
 using DataSyncer.Core.DTOs;
-using DataSyncer.Core.Models;
+using DataSyncer.Core.Models; // Explicitly using DataSyncer.Core.Models.ProtocolType
 using System.Collections.Generic;
-using System.Net.Sockets;
 
-namespace DataSyncer.Service.Services
+namespace DataSyncer.WindowsService.Services
 {
     [DisallowConcurrentExecution]
     public class TransferJob : IJob
@@ -25,11 +24,17 @@ namespace DataSyncer.Service.Services
         {
             _logger.LogInformation("TransferJob started at {time}", System.DateTimeOffset.Now);
 
-
             var files = new List<FileItem>();
             // TODO: enumerate files from configured folder, apply filters
-            var connection = new ConnectionSettings { Host = "example.com", Port = 21, Username = "user", Password = "pass", Protocol = ProtocolType.FTP };
-            var filters = new FilterSettings(); 
+            var connection = new ConnectionSettings
+            {
+                Host = "example.com",
+                Port = 21,
+                Username = "user",
+                Password = "pass",
+                Protocol = DataSyncer.Core.Models.ProtocolType.FTP // Fully qualify ProtocolType
+            };
+            var filters = new FilterSettings();
 
             var result = await _transferService.TransferFilesAsync(files, connection, filters);
 

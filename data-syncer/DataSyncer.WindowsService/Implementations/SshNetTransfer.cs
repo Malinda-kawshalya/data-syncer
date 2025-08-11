@@ -7,9 +7,9 @@ using Renci.SshNet;
 using DataSyncer.Core.Interfaces;
 using DataSyncer.Core.Models;
 using DataSyncer.Core.DTOs;
-using DataSyncer.Service.Services;
+using DataSyncer.WindowsService.Services;
 
-namespace DataSyncer.Service.Implementations
+namespace DataSyncer.WindowsService.Implementations
 {
     public class SshNetTransfer : IFileTransferService
     {
@@ -51,6 +51,66 @@ namespace DataSyncer.Service.Implementations
             }
 
             return Task.FromResult(result);
+        }
+
+        public async Task<bool> TestConnectionAsync(ConnectionSettings connection)
+        {
+            try
+            {
+                _logger.LogInformation($"Testing SFTP connection to {connection.Host}:{connection.Port}");
+
+                using var client = new SftpClient(connection.Host, connection.Port, connection.Username, connection.Password);
+                await Task.Run(() => client.Connect());
+                
+                // Test if we can list directory
+                var items = await Task.Run(() => client.ListDirectory("/"));
+                
+                await Task.Run(() => client.Disconnect());
+                
+                _logger.LogInformation("SFTP connection test successful");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"SFTP connection test failed: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> TransferFileAsync(ConnectionSettings connection, string sourcePath, string destinationPath)
+        {
+            try
+            {
+                _logger.LogInformation($"Starting SFTP file transfer from {sourcePath} to {destinationPath}");
+
+                if (!File.Exists(sourcePath))
+                {
+                    _logger.LogError($"Source file does not exist: {sourcePath}");
+                    return false;
+                }
+
+                using var client = new SftpClient(connection.Host, connection.Port, connection.Username, connection.Password);
+                await Task.Run(() => client.Connect());
+                
+                // Get just the filename for the remote path
+                var fileName = Path.GetFileName(sourcePath);
+                var remotePath = destinationPath.EndsWith("/") ? destinationPath + fileName : destinationPath + "/" + fileName;
+                
+                _logger.LogInformation($"Uploading {sourcePath} to {remotePath}");
+                
+                using var fileStream = File.OpenRead(sourcePath);
+                await Task.Run(() => client.UploadFile(fileStream, remotePath));
+                
+                await Task.Run(() => client.Disconnect());
+                
+                _logger.LogInformation("File transfer completed successfully");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"SFTP file transfer failed: {ex.Message}");
+                return false;
+            }
         }
     }
 }

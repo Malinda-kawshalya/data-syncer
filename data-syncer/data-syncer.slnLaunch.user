@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

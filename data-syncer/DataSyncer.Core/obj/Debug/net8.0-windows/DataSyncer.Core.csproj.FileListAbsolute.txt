@@ -1,0 +1,14 @@
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\bin\Debug\net8.0-windows\NLog.config
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\bin\Debug\net8.0-windows\DataSyncer.Core.deps.json
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\bin\Debug\net8.0-windows\DataSyncer.Core.dll
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\bin\Debug\net8.0-windows\DataSyncer.Core.pdb
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0-windows\DataSyncer.Core.csproj.AssemblyReference.cache
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0-windows\DataSyncer.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0-windows\DataSyncer.Core.AssemblyInfoInputs.cache
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0-windows\DataSyncer.Core.AssemblyInfo.cs
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0-windows\DataSyncer.Core.csproj.CoreCompileInputs.cache
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0-windows\DataSyncer.Core.sourcelink.json
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0-windows\DataSyncer.Core.dll
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0-windows\refint\DataSyncer.Core.dll
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0-windows\DataSyncer.Core.pdb
+E:\data syncer\data-syncer\data-syncer\DataSyncer.Core\obj\Debug\net8.0-windows\ref\DataSyncer.Core.dll

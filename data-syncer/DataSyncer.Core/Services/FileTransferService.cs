@@ -57,5 +57,19 @@ namespace DataSyncer.Core.Services
             result.Success = true;
             return result;
         }
+
+        public async Task<bool> TestConnectionAsync(ConnectionSettings connection)
+        {
+            // Simple implementation for testing
+            await Task.Delay(500); // Simulate connection test
+            return true;
+        }
+
+        public async Task<bool> TransferFileAsync(ConnectionSettings connection, string sourcePath, string destinationPath)
+        {
+            // Simple implementation for transferring a single file
+            await Task.Delay(500); // Simulate file transfer
+            return true;
+        }
     }
 }

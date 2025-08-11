@@ -1,11 +1,9 @@
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using Quartz;
 using DataSyncer.Core.Interfaces;
-using DataSyncer.Service.Services;
-using DataSyncer.Service.Implementations;
+using DataSyncer.WindowsService.Services;
+using DataSyncer.WindowsService.Implementations;
+using DataSyncer.WindowsService;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration((ctx, cfg) => {
@@ -14,16 +12,15 @@ var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
         // Core services
-        services.AddSingleton<IFileTransferService, FluentFtpTransfer>(); // default, can switch on job
+        services.AddSingleton<IFileTransferService, FluentFtpTransfer>(); 
 
-        // Named pipe server
-        services.AddSingleton<NamedPipeServer>();
+        // Named pipe server with explicit pipe name
+        services.AddSingleton<NamedPipeServer>(provider => 
+            new NamedPipeServer("DataSyncerPipe"));
 
         // Quartz
         services.AddQuartz(q =>
         {
-            q.UseMicrosoftDependencyInjectionJobFactory();
-            // A simple example: schedule TransferJob with a cron from config
             var cron = context.Configuration.GetSection("ServiceSettings")?.GetValue<string>("DefaultScheduleCron") ?? "0 0/5 * * * ?";
             var jobKey = new JobKey("TransferJob");
             q.AddJob<TransferJob>(opts => opts.WithIdentity(jobKey));
@@ -34,8 +31,8 @@ var host = Host.CreateDefaultBuilder(args)
         });
         services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
 
-        // Hosted worker to start named pipe and orchestrate
-        services.AddHostedService<FileTransferWorker>();
+        // Hosted worker services
+        services.AddHostedService<Worker>();
 
         // Logging with NLog
         services.AddLogging(loggingBuilder =>
@@ -45,7 +42,7 @@ var host = Host.CreateDefaultBuilder(args)
             loggingBuilder.AddNLog("nlog.config");
         });
 
-        // Add configuration binding etc as needed
+        
     })
     // Allow run as a Windows Service
     .UseWindowsService()
