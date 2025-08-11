@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using DataSyncer.Core.Services;
 using DataSyncer.WinFormsUI.Utilities;
+using System.Threading.Tasks;
 
 namespace DataSyncer.WinFormsUI
 {
@@ -13,7 +14,6 @@ namespace DataSyncer.WinFormsUI
         private Button btnAddJob = null!, btnStartStop = null!, btnRefresh = null!;
         private StatusStrip statusStrip = null!;
         private ToolStripStatusLabel lblStatus = null!;
-        private readonly NamedPipeClient _pipeClient;
         private System.Windows.Forms.Timer _statusTimer = null!;
 
         public FormMain()
@@ -22,7 +22,6 @@ namespace DataSyncer.WinFormsUI
             Size = new Size(900, 600);
             StartPosition = FormStartPosition.CenterScreen;
             
-            _pipeClient = new NamedPipeClient();
             InitializeControls();
             InitializeStatusTimer();
             _ = CheckServiceConnection(); // Fire and forget
@@ -141,8 +140,8 @@ namespace DataSyncer.WinFormsUI
 
                 Console.WriteLine($"=== Sending START_TRANSFER command with settings: {settings.Host}:{settings.Port} ===");
 
-                // Send command to service to start a transfer job
-                bool success = await _pipeClient.SendCommandAsync("START_TRANSFER", settings);
+                // Send command to service to start a transfer job using ConnectionManager
+                bool success = await ConnectionManager.Instance.StartTransferAsync(settings);
                 
                 if (success)
                 {
@@ -166,12 +165,13 @@ namespace DataSyncer.WinFormsUI
         {
             try
             {
-                bool isConnected = await _pipeClient.TestConnectionAsync();
+                bool isConnected = await ConnectionManager.Instance.TestServiceConnectionAsync();
                 
                 if (isConnected)
                 {
                     // Service is running, try to stop it
-                    await _pipeClient.SendCommandAsync<object>("STOP_SERVICE");
+                    var pipeClient = new NamedPipeClient();
+                    await pipeClient.SendCommandAsync<object>("STOP_SERVICE");
                     lblStatus.Text = "Stop command sent to service";
                 }
                 else
@@ -212,7 +212,7 @@ namespace DataSyncer.WinFormsUI
         {
             try
             {
-                bool isConnected = await _pipeClient.TestConnectionAsync();
+                bool isConnected = await ConnectionManager.Instance.TestServiceConnectionAsync();
                 
                 if (isConnected)
                 {
@@ -245,7 +245,7 @@ namespace DataSyncer.WinFormsUI
             
             try
             {
-                var settings = ConfigurationManager.LoadConnectionSettings();
+                var settings = ConnectionManager.Instance.CurrentSettings ?? ConfigurationManager.LoadConnectionSettings();
                 if (settings != null && settings.IsValid())
                 {
                     // Add a sample job based on current settings

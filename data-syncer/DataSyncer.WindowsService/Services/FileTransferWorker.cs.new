@@ -1,0 +1,160 @@
+using System;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+using DataSyncer.Core.Models;
+using DataSyncer.WindowsService.Services;
+using DataSyncer.WindowsService.Implementations;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Quartz;
+
+namespace DataSyncer.WindowsService.Services
+{
+    public class FileTransferWorker : IHostedService
+    {
+        private readonly ILogger<FileTransferWorker> _logger;
+        private readonly NamedPipeServer _pipe;
+        private readonly ISchedulerFactory _schedulerFactory;
+        private readonly LoggingService _loggingService;
+        private readonly FileTransferServiceFactory _transferFactory;
+        private IScheduler? _scheduler;
+
+        public FileTransferWorker(
+            ILogger<FileTransferWorker> logger,
+            NamedPipeServer pipe,
+            LoggingService loggingService,
+            FileTransferServiceFactory transferFactory,
+            ISchedulerFactory schedulerFactory)
+        {
+            _logger = logger;
+            _pipe = pipe;
+            _loggingService = loggingService;
+            _transferFactory = transferFactory;
+            _schedulerFactory = schedulerFactory;
+        }
+
+        public async Task StartAsync(CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("FileTransferWorker starting");
+
+            try
+            {
+                // Start Quartz scheduler
+                _scheduler = await _schedulerFactory.GetScheduler(cancellationToken);
+                await _scheduler.Start(cancellationToken);
+
+                _logger.LogInformation("FileTransferWorker started successfully");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error starting FileTransferWorker");
+                throw;
+            }
+        }
+
+        public async Task StopAsync(CancellationToken cancellationToken)
+        {
+            _logger.LogInformation("FileTransferWorker stopping");
+
+            try
+            {
+                if (_scheduler != null)
+                {
+                    await _scheduler.Shutdown(waitForJobsToComplete: true, cancellationToken);
+                }
+
+                _logger.LogInformation("FileTransferWorker stopped successfully");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error stopping FileTransferWorker");
+            }
+        }
+
+        public async Task TriggerTransferAsync(ConnectionSettings settings)
+        {
+            _logger.LogInformation($"Triggering file transfer for {settings.Host}");
+
+            try
+            {
+                // Execute transfer using the simple executor with our factory
+                await SimpleTransferExecutor.ExecuteTransferAsync(settings, _logger, _loggingService, _transferFactory);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error executing transfer");
+                throw;
+            }
+        }
+
+        public async Task PauseAllJobsAsync()
+        {
+            if (_scheduler != null)
+            {
+                await _scheduler.PauseAll();
+                _logger.LogInformation("All scheduled jobs paused");
+            }
+        }
+
+        public async Task ResumeAllJobsAsync()
+        {
+            if (_scheduler != null)
+            {
+                await _scheduler.ResumeAll();
+                _logger.LogInformation("All scheduled jobs resumed");
+            }
+        }
+
+        public async Task<bool> TestConnectionAsync(ConnectionSettings settings)
+        {
+            try
+            {
+                _logger.LogInformation($"Testing connection to {settings.Host}");
+                
+                // Special case for local transfers
+                if (IsLocalTransfer(settings))
+                {
+                    _logger.LogInformation("Local file transfer - validating paths");
+                    Console.WriteLine("=== Local file transfer - validating paths ===");
+                    
+                    // Set protocol to LOCAL for local transfers
+                    settings.Protocol = ProtocolType.LOCAL;
+                    
+                    // Get the local transfer service
+                    var localTransferService = _transferFactory.CreateFileTransferService(ProtocolType.LOCAL);
+                    return await localTransferService.TestConnectionAsync(settings);
+                }
+                
+                // Use the appropriate transfer service based on protocol
+                var transferService = _transferFactory.CreateFileTransferService(settings.Protocol);
+                return await transferService.TestConnectionAsync(settings);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Connection test failed: {ex.Message}");
+                return false;
+            }
+        }
+        
+        private bool IsLocalTransfer(ConnectionSettings settings)
+        {
+            // Consider it a local transfer if:
+            // 1. Both paths are local OR
+            // 2. Protocol is explicitly set to LOCAL
+            bool bothPathsLocal = IsLocalPath(settings.SourcePath) && IsLocalPath(settings.DestinationPath);
+            bool isLocalProtocol = settings.Protocol == ProtocolType.LOCAL;
+            
+            return bothPathsLocal || isLocalProtocol;
+        }
+        
+        private bool IsLocalPath(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return false;
+                
+            // Check if it's a rooted path or relative path
+            return Path.IsPathRooted(path) || path.StartsWith("./") || path.StartsWith("../");
+        }
+    }
+}

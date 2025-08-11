@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "E:\\data syncer\\data-syncer\\data-syncer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B8DE5225-0BDB-4D93-A6B6-2DFF69942163}|DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.windowsservice\\services\\filetransferworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8DE5225-0BDB-4D93-A6B6-2DFF69942163}|DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj|solutionrelative:datasyncer.windowsservice\\services\\filetransferworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8DE5225-0BDB-4D93-A6B6-2DFF69942163}|DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.windowsservice\\services\\simpletransferexecutor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8DE5225-0BDB-4D93-A6B6-2DFF69942163}|DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj|solutionrelative:datasyncer.windowsservice\\services\\simpletransferexecutor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.core\\services\\filetransferservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|solutionrelative:datasyncer.core\\services\\filetransferservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.core\\models\\connectionsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|solutionrelative:datasyncer.core\\models\\connectionsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B8DE5225-0BDB-4D93-A6B6-2DFF69942163}|DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.windowsservice\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B8DE5225-0BDB-4D93-A6B6-2DFF69942163}|DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj|solutionrelative:datasyncer.windowsservice\\worker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -31,12 +47,8 @@
       "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|E:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\formconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|solutionrelative:datasyncer.winformsui\\formconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.core\\services\\filetransferservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|solutionrelative:datasyncer.core\\services\\filetransferservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9703A035-BEC6-4419-987D-01BE8B37EECF}|DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.winformsui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,10 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B8DE5225-0BDB-4D93-A6B6-2DFF69942163}|DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.windowsservice\\services\\namedpipeserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B8DE5225-0BDB-4D93-A6B6-2DFF69942163}|DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj|solutionrelative:datasyncer.windowsservice\\services\\namedpipeserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B8DE5225-0BDB-4D93-A6B6-2DFF69942163}|DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.windowsservice\\services\\filetransferworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B8DE5225-0BDB-4D93-A6B6-2DFF69942163}|DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj|solutionrelative:datasyncer.windowsservice\\services\\filetransferworker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B8DE5225-0BDB-4D93-A6B6-2DFF69942163}|DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.windowsservice\\services\\transferjob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -85,10 +93,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.core\\models\\fileitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|solutionrelative:datasyncer.core\\models\\fileitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.core\\models\\connectionsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|solutionrelative:datasyncer.core\\models\\connectionsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A72C021-B160-434B-A945-36635FFD4097}|DataSyncer.Core\\DataSyncer.Core.csproj|e:\\data syncer\\data-syncer\\data-syncer\\datasyncer.core\\interfaces\\ifiletransferservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -134,7 +138,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 110,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -145,50 +149,47 @@
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "FormConnection.cs [Design]",
-              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormConnection.cs",
-              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormConnection.cs",
-              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormConnection.cs [Design]",
-              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormConnection.cs [Design]",
+              "DocumentIndex": 1,
+              "Title": "SimpleTransferExecutor.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\Services\\SimpleTransferExecutor.cs",
+              "RelativeDocumentMoniker": "DataSyncer.WindowsService\\Services\\SimpleTransferExecutor.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\Services\\SimpleTransferExecutor.cs",
+              "RelativeToolTip": "DataSyncer.WindowsService\\Services\\SimpleTransferExecutor.cs",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAqwIsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T07:48:56.512Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-08-11T17:14:33.099Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Worker.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\Worker.cs",
               "RelativeDocumentMoniker": "DataSyncer.WindowsService\\Worker.cs",
               "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\Worker.cs",
               "RelativeToolTip": "DataSyncer.WindowsService\\Worker.cs",
-              "ViewState": "AgIAAAwBAAAAAAAAAADwvyUBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAC4BAAAAAAAAAAAkwEMBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-11T07:12:10.636Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
               "Title": "FileTransferService.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Services\\FileTransferService.cs",
               "RelativeDocumentMoniker": "DataSyncer.Core\\Services\\FileTransferService.cs",
               "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Services\\FileTransferService.cs",
               "RelativeToolTip": "DataSyncer.Core\\Services\\FileTransferService.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAswEsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAswEsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-11T04:36:33.265Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "JsonFileHelper.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Utilities\\JsonFileHelper.cs",
               "RelativeDocumentMoniker": "DataSyncer.Core\\Utilities\\JsonFileHelper.cs",
@@ -196,12 +197,11 @@
               "RelativeToolTip": "DataSyncer.Core\\Utilities\\JsonFileHelper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T04:37:11.561Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T04:37:11.561Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "SshNetTransfer.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\Implementations\\SshNetTransfer.cs",
               "RelativeDocumentMoniker": "DataSyncer.WindowsService\\Implementations\\SshNetTransfer.cs",
@@ -209,12 +209,11 @@
               "RelativeToolTip": "DataSyncer.WindowsService\\Implementations\\SshNetTransfer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAHQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T05:29:57.374Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T05:29:57.374Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "NamedPipeServer.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\Services\\NamedPipeServer.cs",
               "RelativeDocumentMoniker": "DataSyncer.WindowsService\\Services\\NamedPipeServer.cs",
@@ -222,12 +221,11 @@
               "RelativeToolTip": "DataSyncer.WindowsService\\Services\\NamedPipeServer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T05:28:25.334Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T05:28:25.334Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "TransferJob.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\Services\\TransferJob.cs",
               "RelativeDocumentMoniker": "DataSyncer.WindowsService\\Services\\TransferJob.cs",
@@ -235,12 +233,11 @@
               "RelativeToolTip": "DataSyncer.WindowsService\\Services\\TransferJob.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAxwDEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T05:29:03.466Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T05:29:03.466Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\Program.cs",
               "RelativeDocumentMoniker": "DataSyncer.WindowsService\\Program.cs",
@@ -248,12 +245,11 @@
               "RelativeToolTip": "DataSyncer.WindowsService\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T05:27:40.683Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T05:27:40.683Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "Class1.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Class1.cs",
               "RelativeDocumentMoniker": "DataSyncer.Core\\Class1.cs",
@@ -261,12 +257,11 @@
               "RelativeToolTip": "DataSyncer.Core\\Class1.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAABOwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T06:46:03.905Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T06:46:03.905Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "DataSyncer.WinFormsUI.csproj",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj",
               "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj",
@@ -274,12 +269,11 @@
               "RelativeToolTip": "DataSyncer.WinFormsUI\\DataSyncer.WinFormsUI.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-08-09T16:04:32.414Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-09T16:04:32.414Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "NamedPipeClient.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\Utilities\\NamedPipeClient.cs",
               "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\Utilities\\NamedPipeClient.cs",
@@ -287,12 +281,28 @@
               "RelativeToolTip": "DataSyncer.WinFormsUI\\Utilities\\NamedPipeClient.cs",
               "ViewState": "AgIAAHoAAAAAAAAAAAAAwB4AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T05:39:28.525Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T05:39:28.525Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "FileTransferWorker.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\Services\\FileTransferWorker.cs",
+              "RelativeDocumentMoniker": "DataSyncer.WindowsService\\Services\\FileTransferWorker.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\Services\\FileTransferWorker.cs",
+              "RelativeToolTip": "DataSyncer.WindowsService\\Services\\FileTransferWorker.cs",
+              "ViewState": "AgIAANQAAAAAAAAAAAAswPgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-11T07:32:24.79Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "FluentFtpTransfer.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\Implementations\\FluentFtpTransfer.cs",
               "RelativeDocumentMoniker": "DataSyncer.WindowsService\\Implementations\\FluentFtpTransfer.cs",
@@ -300,25 +310,47 @@
               "RelativeToolTip": "DataSyncer.WindowsService\\Implementations\\FluentFtpTransfer.cs",
               "ViewState": "AgIAAIkAAAAAAAAAAAAuwGkAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T10:43:00.999Z",
+              "WhenOpened": "2025-08-11T10:43:00.999Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ConnectionSettings.cs",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\ConnectionSettings.cs",
+              "RelativeDocumentMoniker": "DataSyncer.Core\\Models\\ConnectionSettings.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\ConnectionSettings.cs",
+              "RelativeToolTip": "DataSyncer.Core\\Models\\ConnectionSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T16:22:50.818Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DataSyncer.WindowsService",
+              "DocumentIndex": 11,
+              "Title": "FormConnection.cs [Design]",
+              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormConnection.cs",
+              "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormConnection.cs",
+              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormConnection.cs [Design]",
+              "RelativeToolTip": "DataSyncer.WinFormsUI\\FormConnection.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-11T07:48:56.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DataSyncer.WindowsService.csproj",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj",
               "RelativeDocumentMoniker": "DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj",
               "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj",
               "RelativeToolTip": "DataSyncer.WindowsService\\DataSyncer.WindowsService.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-08-11T10:13:09.472Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T10:13:09.472Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "FormConnection.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormConnection.cs",
               "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormConnection.cs",
@@ -326,12 +358,11 @@
               "RelativeToolTip": "DataSyncer.WinFormsUI\\FormConnection.cs",
               "ViewState": "AgIAAMoAAAAAAAAAAAAQwNQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T16:09:22.922Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-09T16:09:22.922Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\Program.cs",
               "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\Program.cs",
@@ -339,12 +370,11 @@
               "RelativeToolTip": "DataSyncer.WinFormsUI\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T16:04:37.238Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-09T16:04:37.238Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "TransferLog.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\TransferLog.cs",
               "RelativeDocumentMoniker": "DataSyncer.Core\\Models\\TransferLog.cs",
@@ -352,12 +382,11 @@
               "RelativeToolTip": "DataSyncer.Core\\Models\\TransferLog.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAiwAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T17:29:45.005Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-09T17:29:45.005Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "DataSyncer.Core.csproj",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\DataSyncer.Core.csproj",
               "RelativeDocumentMoniker": "DataSyncer.Core\\DataSyncer.Core.csproj",
@@ -365,25 +394,11 @@
               "RelativeToolTip": "DataSyncer.Core\\DataSyncer.Core.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-08-11T06:58:15.728Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T06:58:15.728Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "FileTransferWorker.cs",
-              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\Services\\FileTransferWorker.cs",
-              "RelativeDocumentMoniker": "DataSyncer.WindowsService\\Services\\FileTransferWorker.cs",
-              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\Services\\FileTransferWorker.cs",
-              "RelativeToolTip": "DataSyncer.WindowsService\\Services\\FileTransferWorker.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T07:32:24.79Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "FilterSettings.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\FilterSettings.cs",
               "RelativeDocumentMoniker": "DataSyncer.Core\\Models\\FilterSettings.cs",
@@ -391,12 +406,11 @@
               "RelativeToolTip": "DataSyncer.Core\\Models\\FilterSettings.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T17:29:28.49Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-09T17:29:28.49Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "FileItem.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\FileItem.cs",
               "RelativeDocumentMoniker": "DataSyncer.Core\\Models\\FileItem.cs",
@@ -404,25 +418,11 @@
               "RelativeToolTip": "DataSyncer.Core\\Models\\FileItem.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T17:28:23.919Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-09T17:28:23.919Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "ConnectionSettings.cs",
-              "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\ConnectionSettings.cs",
-              "RelativeDocumentMoniker": "DataSyncer.Core\\Models\\ConnectionSettings.cs",
-              "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Models\\ConnectionSettings.cs",
-              "RelativeToolTip": "DataSyncer.Core\\Models\\ConnectionSettings.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T16:22:50.818Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "IFileTransferService.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Interfaces\\IFileTransferService.cs",
               "RelativeDocumentMoniker": "DataSyncer.Core\\Interfaces\\IFileTransferService.cs",
@@ -430,12 +430,11 @@
               "RelativeToolTip": "DataSyncer.Core\\Interfaces\\IFileTransferService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T16:22:30.109Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-09T16:22:30.109Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "FileTransferException.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Exceptions\\FileTransferException.cs",
               "RelativeDocumentMoniker": "DataSyncer.Core\\Exceptions\\FileTransferException.cs",
@@ -443,12 +442,11 @@
               "RelativeToolTip": "DataSyncer.Core\\Exceptions\\FileTransferException.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T06:45:44.848Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T06:45:44.848Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "appsettings.json",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WindowsService\\appsettings.json",
               "RelativeDocumentMoniker": "DataSyncer.WindowsService\\appsettings.json",
@@ -456,12 +454,11 @@
               "RelativeToolTip": "DataSyncer.WindowsService\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-11T05:26:57.887Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T05:26:57.887Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "RetryPolicy.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\Services\\RetryPolicy.cs",
               "RelativeDocumentMoniker": "DataSyncer.Core\\Services\\RetryPolicy.cs",
@@ -469,24 +466,22 @@
               "RelativeToolTip": "DataSyncer.Core\\Services\\RetryPolicy.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T04:36:53.098Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T04:36:53.098Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "FormMain.cs [Design]",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.cs",
               "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormMain.cs",
               "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormMain.cs [Design]",
               "RelativeToolTip": "DataSyncer.WinFormsUI\\FormMain.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T05:48:55.166Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-08-11T05:48:55.166Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "TransferResultDto.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.Core\\DTOs\\TransferResultDto.cs",
               "RelativeDocumentMoniker": "DataSyncer.Core\\DTOs\\TransferResultDto.cs",
@@ -494,24 +489,22 @@
               "RelativeToolTip": "DataSyncer.Core\\DTOs\\TransferResultDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T04:35:34.211Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-11T04:35:34.211Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "FormSchedule.cs [Design]",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormSchedule.cs",
               "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormSchedule.cs",
               "ToolTip": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormSchedule.cs [Design]",
               "RelativeToolTip": "DataSyncer.WinFormsUI\\FormSchedule.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T16:11:28.951Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-08-09T16:11:28.951Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "FormLogs.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormLogs.cs",
               "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormLogs.cs",
@@ -519,12 +512,11 @@
               "RelativeToolTip": "DataSyncer.WinFormsUI\\FormLogs.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAxwCwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T16:10:38.37Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-09T16:10:38.37Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "FormFilters.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormFilters.cs",
               "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormFilters.cs",
@@ -532,12 +524,11 @@
               "RelativeToolTip": "DataSyncer.WinFormsUI\\FormFilters.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAxwCgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T16:10:09.872Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-09T16:10:09.872Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "FormSchedule.cs",
               "DocumentMoniker": "E:\\data syncer\\data-syncer\\data-syncer\\DataSyncer.WinFormsUI\\FormSchedule.cs",
               "RelativeDocumentMoniker": "DataSyncer.WinFormsUI\\FormSchedule.cs",
@@ -545,8 +536,7 @@
               "RelativeToolTip": "DataSyncer.WinFormsUI\\FormSchedule.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAxwCQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-09T16:09:47.25Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-09T16:09:47.25Z"
             }
           ]
         }

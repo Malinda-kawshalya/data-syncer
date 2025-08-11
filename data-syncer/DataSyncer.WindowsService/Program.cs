@@ -1,3 +1,7 @@
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 using NLog.Extensions.Logging;
 using Quartz;
 using DataSyncer.Core.Interfaces;
@@ -11,12 +15,26 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .ConfigureServices((context, services) =>
     {
-        // Core services
-        services.AddSingleton<IFileTransferService, FluentFtpTransfer>(); 
+        // Register all file transfer implementations
+        services.AddSingleton<FluentFtpTransfer>(); 
+        services.AddSingleton<LocalFileTransfer>();
+        
+        // Register the factory
+        services.AddSingleton<FileTransferServiceFactory>();
+        
+        // Register the IFileTransferService as a factory
+        services.AddSingleton<IFileTransferService>(provider => 
+            provider.GetRequiredService<FileTransferServiceFactory>()
+                .CreateFileTransferService(DataSyncer.Core.Models.ProtocolType.FTP));
+        
+        // Logging service
+        services.AddSingleton<LoggingService>();
 
         // Named pipe server with explicit pipe name
         services.AddSingleton<NamedPipeServer>(provider => 
-            new NamedPipeServer("DataSyncerPipe"));
+            new NamedPipeServer(
+                provider.GetRequiredService<LoggingService>(), 
+                "DataSyncerPipe"));
 
         // Quartz
         services.AddQuartz(q =>
@@ -41,8 +59,6 @@ var host = Host.CreateDefaultBuilder(args)
             loggingBuilder.SetMinimumLevel(LogLevel.Information);
             loggingBuilder.AddNLog("nlog.config");
         });
-
-        
     })
     // Allow run as a Windows Service
     .UseWindowsService()

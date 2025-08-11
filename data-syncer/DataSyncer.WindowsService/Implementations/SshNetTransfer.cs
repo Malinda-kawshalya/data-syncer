@@ -19,28 +19,47 @@ namespace DataSyncer.WindowsService.Implementations
             _logger = logger;
         }
 
-        public Task<TransferResultDto> TransferFilesAsync(List<FileItem> files, ConnectionSettings connection, FilterSettings filters)
+        public async Task<TransferResultDto> TransferFilesAsync(List<FileItem> files, ConnectionSettings connection, FilterSettings filters)
         {
-            var result = new TransferResultDto();
+            var result = new TransferResultDto { Logs = new List<TransferLog>() };
 
             using var sftp = new Renci.SshNet.SftpClient(connection.Host, connection.Port, connection.Username, connection.Password);
             try
             {
-                sftp.Connect();
+                await Task.Run(() => sftp.Connect());
+                
                 foreach (var f in files)
                 {
                     try
                     {
                         using var fs = File.OpenRead(f.FullPath);
-                        sftp.UploadFile(fs, Path.GetFileName(f.FullPath));
-                        result.Logs.Add(new TransferLog { Timestamp = DateTime.Now, FileName = f.FileName, Status = "Success", Message = "Uploaded" });
+                        // Create the correct remote path by combining destination path with filename
+                        string remotePath = connection.DestinationPath?.TrimEnd('/') + "/" + Path.GetFileName(f.FullPath);
+                        _logger.LogInformation($"Uploading {f.FullPath} to {remotePath}");
+                        
+                        await Task.Run(() => sftp.UploadFile(fs, remotePath, true));
+                        
+                        result.Logs.Add(new TransferLog 
+                        { 
+                            Timestamp = DateTime.Now, 
+                            FileName = f.FileName, 
+                            Status = "Success", 
+                            Message = $"Uploaded to {remotePath}" 
+                        });
                     }
                     catch (Exception ex)
                     {
-                        result.Logs.Add(new TransferLog { Timestamp = DateTime.Now, FileName = f.FileName, Status = "Failed", Message = ex.Message });
+                        result.Logs.Add(new TransferLog 
+                        { 
+                            Timestamp = DateTime.Now, 
+                            FileName = f.FileName, 
+                            Status = "Failed", 
+                            Message = ex.Message 
+                        });
                     }
                 }
-                sftp.Disconnect();
+                
+                await Task.Run(() => sftp.Disconnect());
                 result.Success = true;
             }
             catch (Exception ex)
@@ -50,7 +69,7 @@ namespace DataSyncer.WindowsService.Implementations
                 result.Logs.Add(new TransferLog { Timestamp = DateTime.Now, FileName = "", Status = "Failed", Message = ex.Message });
             }
 
-            return Task.FromResult(result);
+            return result;
         }
 
         public async Task<bool> TestConnectionAsync(ConnectionSettings connection)
@@ -94,12 +113,28 @@ namespace DataSyncer.WindowsService.Implementations
                 
                 // Get just the filename for the remote path
                 var fileName = Path.GetFileName(sourcePath);
-                var remotePath = destinationPath.EndsWith("/") ? destinationPath + fileName : destinationPath + "/" + fileName;
+                var remotePath = destinationPath;
+                
+                // Make sure remotePath ends with a slash if it's a directory
+                if (!remotePath.EndsWith("/"))
+                {
+                    // Check if it's a directory path (no file extension)
+                    if (!remotePath.Contains("."))
+                    {
+                        remotePath += "/";
+                    }
+                }
+                
+                // If it's a directory path, add the filename
+                if (remotePath.EndsWith("/"))
+                {
+                    remotePath += fileName;
+                }
                 
                 _logger.LogInformation($"Uploading {sourcePath} to {remotePath}");
                 
                 using var fileStream = File.OpenRead(sourcePath);
-                await Task.Run(() => client.UploadFile(fileStream, remotePath));
+                await Task.Run(() => client.UploadFile(fileStream, remotePath, true)); // true for overwrite
                 
                 await Task.Run(() => client.Disconnect());
                 

@@ -36,9 +36,13 @@ namespace DataSyncer.WindowsService.Implementations
                     try
                     {
                         using var fs = File.OpenRead(f.FullPath);
+                        // Create the correct remote path by combining destination path with filename
+                        string remotePath = connection.DestinationPath?.TrimEnd('/') + "/" + Path.GetFileName(f.FullPath);
+                        _logger.LogInformation($"Uploading {f.FullPath} to {remotePath}");
+                        
                         // Use UploadFile instead of UploadAsync, and FtpRemoteExists instead of FtpExists
                         var status = await Task.Run(() =>
-                            client.UploadFile(f.FullPath, Path.GetFileName(f.FullPath), FtpRemoteExists.Overwrite, true)
+                            client.UploadFile(f.FullPath, remotePath, FtpRemoteExists.Overwrite, true)
                         );
                         var success = status == FtpStatus.Success;
                         result.Logs.Add(new TransferLog
@@ -129,7 +133,23 @@ namespace DataSyncer.WindowsService.Implementations
                 
                 // Get just the filename for the remote path
                 var fileName = Path.GetFileName(sourcePath);
-                var remotePath = destinationPath.EndsWith("/") ? destinationPath + fileName : destinationPath + "/" + fileName;
+                var remotePath = destinationPath;
+                
+                // Make sure remotePath ends with a slash if it's a directory
+                if (!remotePath.EndsWith("/"))
+                {
+                    // Check if it's a directory path (no file extension)
+                    if (!remotePath.Contains("."))
+                    {
+                        remotePath += "/";
+                    }
+                }
+                
+                // If it's a directory path, add the filename
+                if (remotePath.EndsWith("/"))
+                {
+                    remotePath += fileName;
+                }
                 
                 _logger.LogInformation($"Uploading {sourcePath} to {remotePath}");
                 

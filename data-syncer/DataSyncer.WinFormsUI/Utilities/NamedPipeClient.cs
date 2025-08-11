@@ -13,11 +13,23 @@ namespace DataSyncer.WinFormsUI.Utilities
         private NamedPipeClientStream? _pipeClient;
         private readonly SemaphoreSlim _semaphore;
         private bool _isDisposed;
+        private int _connectionTimeoutMs = 5000; // 5 second timeout
 
         public NamedPipeClient(string pipeName = "DataSyncerPipe")
         {
             _pipeName = pipeName;
             _semaphore = new SemaphoreSlim(1, 1);
+        }
+
+        /// <summary>
+        /// Sets the connection timeout in milliseconds
+        /// </summary>
+        public void SetConnectionTimeout(int timeoutMs)
+        {
+            if (timeoutMs > 0)
+            {
+                _connectionTimeoutMs = timeoutMs;
+            }
         }
 
         /// <summary>
@@ -27,6 +39,7 @@ namespace DataSyncer.WinFormsUI.Utilities
         /// <returns>The response from the server, or null if no response received</returns>
         public async Task<string?> SendMessageAsync(string message)
         {
+            Console.WriteLine($"Sending message: {message}");
             await _semaphore.WaitAsync();
             try
             {
@@ -41,20 +54,25 @@ namespace DataSyncer.WinFormsUI.Utilities
                 byte[] messageBytes = Encoding.UTF8.GetBytes(message);
                 await _pipeClient.WriteAsync(messageBytes);
                 await _pipeClient.FlushAsync();
+                Console.WriteLine("Message sent successfully");
 
-                // Read the response
-                byte[] buffer = new byte[4096];
+                // Read the response with a large buffer
+                byte[] buffer = new byte[8192]; // 8KB buffer
                 int bytesRead = await _pipeClient.ReadAsync(buffer);
 
                 if (bytesRead > 0)
                 {
-                    return Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    var response = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    Console.WriteLine($"Received response: {response}");
+                    return response;
                 }
 
+                Console.WriteLine("No response received");
                 return null;
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"Error sending message: {ex.Message}");
                 throw new InvalidOperationException($"Error communicating with pipe server: {ex.Message}", ex);
             }
             finally
@@ -106,16 +124,40 @@ namespace DataSyncer.WinFormsUI.Utilities
         {
             if (_pipeClient == null || !_pipeClient.IsConnected)
             {
-                _pipeClient?.Dispose();
+                DisposePipeClient();
                 _pipeClient = new NamedPipeClientStream(".", _pipeName, PipeDirection.InOut, PipeOptions.Asynchronous);
 
                 try
                 {
-                    await _pipeClient.ConnectAsync(5000); // 5 second timeout
+                    Console.WriteLine($"Connecting to pipe server (timeout: {_connectionTimeoutMs}ms)...");
+                    await _pipeClient.ConnectAsync(_connectionTimeoutMs);
+                    Console.WriteLine("Connected to pipe server successfully");
                 }
                 catch (TimeoutException)
                 {
-                    throw new InvalidOperationException("Timeout while connecting to pipe server. Ensure the service is running.");
+                    DisposePipeClient();
+                    throw new InvalidOperationException($"Timeout while connecting to pipe server '{_pipeName}'. Ensure the service is running.");
+                }
+                catch (Exception ex)
+                {
+                    DisposePipeClient();
+                    throw new InvalidOperationException($"Error connecting to pipe server: {ex.Message}", ex);
+                }
+            }
+        }
+        
+        private void DisposePipeClient()
+        {
+            if (_pipeClient != null)
+            {
+                try
+                {
+                    _pipeClient.Dispose();
+                    _pipeClient = null;
+                }
+                catch
+                {
+                    // Ignore disposal errors
                 }
             }
         }
@@ -131,6 +173,7 @@ namespace DataSyncer.WinFormsUI.Utilities
         {
             try
             {
+                Console.WriteLine($"Sending command: {command}");
                 var message = new
                 {
                     Command = command,
@@ -140,38 +183,40 @@ namespace DataSyncer.WinFormsUI.Utilities
 
                 var json = JsonSerializer.Serialize(message);
                 
-                // For commands that need response verification, use SendMessageAsync
-                if (command == "START_TRANSFER" || command == "TEST_CONNECTION")
+                // Always wait for a response to ensure the command was processed
+                var response = await SendMessageAsync(json);
+                
+                // Check if we got a response
+                if (!string.IsNullOrEmpty(response))
                 {
-                    var response = await SendMessageAsync(json);
-                    
-                    // Check if we got a response
-                    if (!string.IsNullOrEmpty(response))
+                    try
                     {
-                        try
+                        using var responseDoc = JsonDocument.Parse(response);
+                        if (responseDoc.RootElement.TryGetProperty("Success", out var successElement))
                         {
-                            using var responseDoc = JsonDocument.Parse(response);
-                            if (responseDoc.RootElement.TryGetProperty("Success", out var successElement))
+                            bool success = successElement.GetBoolean();
+                            
+                            // Log response message if available
+                            if (responseDoc.RootElement.TryGetProperty("Message", out var messageElement))
                             {
-                                return successElement.GetBoolean();
+                                Console.WriteLine($"Response: {messageElement.GetString()}");
                             }
-                            // If no Success property, consider any response as success
-                            return true;
+                            
+                            return success;
                         }
-                        catch
-                        {
-                            // If response parsing fails, consider any response as success
-                            return true;
-                        }
+                        // If no Success property, consider any response as success
+                        return true;
                     }
-                    return false; // No response means failure
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error parsing response: {ex.Message}");
+                        // If response parsing fails, consider any response as success
+                        return true;
+                    }
                 }
-                else
-                {
-                    // For other commands (PING, UPDATE_CONNECTION), just send without waiting
-                    await SendMessageNoResponseAsync(json);
-                    return true;
-                }
+                
+                Console.WriteLine("No response received from server");
+                return false; // No response means failure
             }
             catch (Exception ex)
             {
@@ -192,8 +237,9 @@ namespace DataSyncer.WinFormsUI.Utilities
                 // TEST_CONNECTION is for testing FTP connections, not service connectivity
                 return await SendCommandAsync<object>("PING");
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Connection test failed: {ex.Message}");
                 return false;
             }
         }
@@ -210,7 +256,7 @@ namespace DataSyncer.WinFormsUI.Utilities
             {
                 if (disposing)
                 {
-                    _pipeClient?.Dispose();
+                    DisposePipeClient();
                     _semaphore.Dispose();
                 }
 

@@ -1,8 +1,12 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using DataSyncer.Core.Models;
+using DataSyncer.Core.Interfaces;
 using DataSyncer.WindowsService.Services;
+using DataSyncer.WindowsService.Implementations;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Quartz;
@@ -14,15 +18,21 @@ namespace DataSyncer.WindowsService.Services
         private readonly ILogger<FileTransferWorker> _logger;
         private readonly NamedPipeServer _pipe;
         private readonly ISchedulerFactory _schedulerFactory;
+        private readonly LoggingService _loggingService;
+        private readonly FileTransferServiceFactory _transferFactory;
         private IScheduler? _scheduler;
 
         public FileTransferWorker(
             ILogger<FileTransferWorker> logger,
             NamedPipeServer pipe,
+            LoggingService loggingService,
+            FileTransferServiceFactory transferFactory,
             ISchedulerFactory schedulerFactory)
         {
             _logger = logger;
             _pipe = pipe;
+            _loggingService = loggingService;
+            _transferFactory = transferFactory;
             _schedulerFactory = schedulerFactory;
         }
 
@@ -70,8 +80,8 @@ namespace DataSyncer.WindowsService.Services
 
             try
             {
-                // Execute transfer using the simple executor
-                await SimpleTransferExecutor.ExecuteTransferAsync(settings, _logger);
+                // Execute transfer using the simple executor with the factory
+                await SimpleTransferExecutor.ExecuteTransferAsync(settings, _logger, _loggingService, _transferFactory);
             }
             catch (Exception ex)
             {
@@ -120,8 +130,13 @@ namespace DataSyncer.WindowsService.Services
                     _logger.LogInformation("Local file transfer - validating paths");
                     Console.WriteLine("=== Local file transfer - validating paths ===");
                     
-                    string sourcePath = settings.SourcePath?.Trim('"') ?? string.Empty;
-                    string destPath = settings.DestinationPath ?? string.Empty;
+                    // Clean and normalize the paths
+                    string sourcePath = settings.SourcePath?.Trim().Trim('"') ?? string.Empty;
+                    string destPath = settings.DestinationPath?.Trim().Trim('"') ?? string.Empty;
+                    
+                    // Replace forward slashes with backslashes for Windows paths
+                    sourcePath = sourcePath.Replace('/', '\\');
+                    destPath = destPath.Replace('/', '\\');
                     
                     Console.WriteLine($"=== Source path: {sourcePath} ===");
                     Console.WriteLine($"=== Destination path: {destPath} ===");
@@ -130,8 +145,42 @@ namespace DataSyncer.WindowsService.Services
                     bool sourceValid = false;
                     if (!string.IsNullOrEmpty(sourcePath))
                     {
-                        sourceValid = File.Exists(sourcePath) || Directory.Exists(sourcePath);
+                        bool fileExists = File.Exists(sourcePath);
+                        bool dirExists = Directory.Exists(sourcePath);
+                        sourceValid = fileExists || dirExists;
+                        
+                        Console.WriteLine($"=== Source path: {sourcePath} ===");
+                        Console.WriteLine($"=== File exists: {fileExists} ===");
+                        Console.WriteLine($"=== Directory exists: {dirExists} ===");
                         Console.WriteLine($"=== Source path valid: {sourceValid} ===");
+                        
+                        // Check if file might exist with slightly different path
+                        if (!sourceValid)
+                        {
+                            try
+                            {
+                                string directory = Path.GetDirectoryName(sourcePath) ?? string.Empty;
+                                string filename = Path.GetFileName(sourcePath);
+                                if (Directory.Exists(directory))
+                                {
+                                    Console.WriteLine($"=== Directory exists: {directory} ===");
+                                    var files = Directory.GetFiles(directory);
+                                    Console.WriteLine($"=== Files in directory: {files.Length} ===");
+                                    foreach (var file in files.Take(5)) // List up to 5 files to avoid flooding logs
+                                    {
+                                        Console.WriteLine($"=== Found file: {Path.GetFileName(file)} ===");
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"=== Directory does not exist: {directory} ===");
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"=== Error checking directory: {ex.Message} ===");
+                            }
+                        }
                     }
                     
                     // For destination, just check it's not empty
@@ -173,25 +222,27 @@ namespace DataSyncer.WindowsService.Services
         }
         
         /// <summary>
-        /// Gets the appropriate transfer service based on connection protocol
+        /// Gets the appropriate transfer service based on connection protocol using the factory
         /// </summary>
-        private Core.Interfaces.IFileTransferService GetTransferService(ConnectionSettings settings)
+        private IFileTransferService GetTransferService(ConnectionSettings settings)
         {
-            // This would be better handled by dependency injection
-            return settings.Protocol switch
-            {
-                ProtocolType.FTP => new WindowsService.Implementations.FluentFtpTransfer(
-                    (ILogger<WindowsService.Implementations.FluentFtpTransfer>)(object)_logger),
-                ProtocolType.SFTP => new WindowsService.Implementations.SshNetTransfer(
-                    (ILogger<WindowsService.Implementations.SshNetTransfer>)(object)_logger),
-                _ => new Core.Services.FileTransferService()
-            };
+            return _transferFactory.CreateFileTransferService(settings.Protocol);
         }
         
         private bool IsLocalPath(string path)
         {
-            return !string.IsNullOrEmpty(path) && 
-                   (path.Contains(":\\") || path.StartsWith("\\\\"));
+            if (string.IsNullOrEmpty(path))
+                return false;
+                
+            // Clean up the path a bit
+            string cleanPath = path.Trim().Trim('"');
+            
+            // Check for Windows drive letter pattern (C:\) or UNC path (\\server\)
+            return (cleanPath.Length >= 3 && 
+                    char.IsLetter(cleanPath[0]) && 
+                    cleanPath[1] == ':' && 
+                    (cleanPath[2] == '\\' || cleanPath[2] == '/')) || 
+                   cleanPath.StartsWith("\\\\");
         }
     }
 }

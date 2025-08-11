@@ -5,7 +5,8 @@ namespace DataSyncer.Core.Models
     public enum ProtocolType
     {
         FTP,
-        SFTP
+        SFTP,
+        LOCAL
     }
 
     public class ConnectionSettings

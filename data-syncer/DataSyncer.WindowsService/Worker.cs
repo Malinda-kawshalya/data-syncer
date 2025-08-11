@@ -1,6 +1,7 @@
 using DataSyncer.Core.Models;
 using DataSyncer.Core.Services;
 using DataSyncer.WindowsService.Services;
+using DataSyncer.WindowsService.Implementations;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
@@ -16,17 +17,26 @@ namespace DataSyncer.WindowsService
         private readonly ILogger<Worker> _logger;
         private readonly FileTransferWorker _fileTransferWorker;
         private readonly NamedPipeServer _pipeServer;
+        private readonly LoggingService _loggingService;
         private ConnectionSettings? _lastConnectionSettings; // Store the most recent connection settings
 
         public Worker(
             ILogger<Worker> logger,
             NamedPipeServer pipeServer,
             ISchedulerFactory schedulerFactory,
+            LoggingService loggingService,
+            FileTransferServiceFactory transferFactory,
             ILogger<FileTransferWorker> fileTransferLogger)
         {
             _logger = logger;
             _pipeServer = pipeServer;
-            _fileTransferWorker = new FileTransferWorker(fileTransferLogger, pipeServer, schedulerFactory);
+            _loggingService = loggingService;
+            _fileTransferWorker = new FileTransferWorker(
+                fileTransferLogger, 
+                pipeServer, 
+                loggingService,
+                transferFactory, 
+                schedulerFactory);
             
             // Subscribe to pipe messages
             _pipeServer.MessageReceived += OnMessageReceived;
@@ -65,78 +75,69 @@ namespace DataSyncer.WindowsService
             }
         }
 
-        private async void OnMessageReceived(object? sender, string message)
+        private async void OnMessageReceived(object? sender, PipeMessageEventArgs e)
         {
             try
             {
-                _logger.LogInformation($"Received message: {message}");
-                Console.WriteLine($"=== Received message: {message} ===");
+                _logger.LogInformation($"Received command: {e.Command}");
+                Console.WriteLine($"=== Received command: {e.Command} ===");
 
-                // Try to parse as JSON command
-                var command = JsonSerializer.Deserialize<JsonElement>(message);
-                
-                if (command.TryGetProperty("Command", out var cmdElement))
+                switch (e.Command.ToUpper())
                 {
-                    var commandName = cmdElement.GetString();
-                    _logger.LogInformation($"Processing command: {commandName}");
-                    Console.WriteLine($"=== Processing command: {commandName} ===");
+                    case "PING":
+                        _logger.LogInformation("Received PING command - Service is alive");
+                        _pipeServer.SetCommandResult(true, "Pong");
+                        break;
 
-                    // Extract data if available
-                    JsonElement? dataElement = null;
-                    if (command.TryGetProperty("Data", out var data))
-                    {
-                        dataElement = data;
-                    }
+                    case "TEST_CONNECTION":
+                        await HandleTestConnection(e.Data);
+                        break;
 
-                    switch (commandName?.ToUpper())
-                    {
-                        case "PING":
-                            _logger.LogInformation("Received PING command - Service is alive");
-                            break;
+                    case "UPDATE_CONNECTION":
+                        await HandleUpdateConnection(e.Data);
+                        break;
 
-                        case "TEST_CONNECTION":
-                            await HandleTestConnection(dataElement);
-                            break;
+                    case "START_TRANSFER":
+                        await HandleStartTransfer(e.Data);
+                        break;
 
-                        case "UPDATE_CONNECTION":
-                            await HandleUpdateConnection(dataElement);
-                            break;
+                    case "STOP_SERVICE":
+                        _logger.LogInformation("Received STOP_SERVICE command");
+                        _pipeServer.SetCommandResult(true, "Service stopping...");
+                        break;
 
-                        case "START_TRANSFER":
-                            await HandleStartTransfer(dataElement);
-                            break;
-
-                        case "STOP_SERVICE":
-                            _logger.LogInformation("Received STOP_SERVICE command");
-                            
-                            break;
-
-                        default:
-                            _logger.LogWarning($"Unknown command: {commandName}");
-                            break;
-                    }
-                }
-                else
-                {
-                    _logger.LogWarning($"Invalid command format: {message}");
+                    default:
+                        _logger.LogWarning($"Unknown command: {e.Command}");
+                        _pipeServer.SetCommandResult(false, $"Unknown command: {e.Command}");
+                        break;
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error processing message: {message}");
+                _logger.LogError(ex, $"Error processing command: {e.Command}");
+                _pipeServer.SetCommandResult(false, $"Error processing command: {ex.Message}");
             }
         }
 
-        private async Task HandleTestConnection(JsonElement? data)
+        private async Task HandleTestConnection(object? data)
         {
             try
             {
                 // Get settings from command data if available
                 ConnectionSettings? settings = null;
                 
-                if (data.HasValue && data.Value.ValueKind != JsonValueKind.Null)
+                if (data != null)
                 {
-                    settings = JsonSerializer.Deserialize<ConnectionSettings>(data.Value.GetRawText());
+                    // Try to convert from JsonElement if that's what we got
+                    if (data is JsonElement jsonElement && jsonElement.ValueKind != JsonValueKind.Null)
+                    {
+                        settings = JsonSerializer.Deserialize<ConnectionSettings>(jsonElement.GetRawText());
+                    }
+                    // If data is already a ConnectionSettings object (rare but possible)
+                    else if (data is ConnectionSettings connectionSettings)
+                    {
+                        settings = connectionSettings;
+                    }
                 }
                 
                 // If no settings provided in the command, use the stored settings
@@ -159,70 +160,91 @@ namespace DataSyncer.WindowsService
                     {
                         _logger.LogInformation("Connection test successful");
                         Console.WriteLine("=== Connection test successful ===");
+                        _pipeServer.SetCommandResult(true, "Connection test successful");
                     }
                     else
                     {
                         _logger.LogWarning("Connection test failed");
                         Console.WriteLine("=== Connection test failed ===");
+                        _pipeServer.SetCommandResult(false, "Connection test failed");
                     }
                 }
                 else
                 {
                     Console.WriteLine("=== Error: No valid connection settings available ===");
+                    _pipeServer.SetCommandResult(false, "No valid connection settings available");
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error testing connection");
                 Console.WriteLine($"=== Error testing connection: {ex.Message} ===");
+                _pipeServer.SetCommandResult(false, $"Error testing connection: {ex.Message}");
             }
-            
-            // No need to return anything in async Task method
         }
 
-        private Task HandleUpdateConnection(JsonElement? data)
+        private Task HandleUpdateConnection(object? data)
         {
             try
             {
-                if (data.HasValue && data.Value.ValueKind != JsonValueKind.Null)
+                ConnectionSettings? settings = null;
+                
+                // Try to convert from JsonElement if that's what we got
+                if (data is JsonElement jsonElement && jsonElement.ValueKind != JsonValueKind.Null)
                 {
-                    var settings = JsonSerializer.Deserialize<ConnectionSettings>(data.Value.GetRawText());
-                    if (settings != null)
-                    {
-                        // Store the settings for future use
-                        _lastConnectionSettings = settings;
-                        
-                        _logger.LogInformation($"Updating connection settings for {settings.Host}");
-                        Console.WriteLine($"=== Updated connection settings for {settings.Host}:{settings.Port} ===");
-                        Console.WriteLine($"=== Source path: {settings.SourcePath} ===");
-                        Console.WriteLine($"=== Destination path: {settings.DestinationPath} ===");
-                        // Connection settings are already saved by the UI via ConfigurationManager
-                    }
+                    settings = JsonSerializer.Deserialize<ConnectionSettings>(jsonElement.GetRawText());
+                }
+                // If data is already a ConnectionSettings object (rare but possible)
+                else if (data is ConnectionSettings connectionSettings)
+                {
+                    settings = connectionSettings;
+                }
+                
+                if (settings != null)
+                {
+                    // Store the settings for future use
+                    _lastConnectionSettings = settings;
+                    
+                    _logger.LogInformation($"Updating connection settings for {settings.Host}");
+                    Console.WriteLine($"=== Updated connection settings for {settings.Host}:{settings.Port} ===");
+                    Console.WriteLine($"=== Source path: {settings.SourcePath} ===");
+                    Console.WriteLine($"=== Destination path: {settings.DestinationPath} ===");
+                    
+                    // Set success result
+                    _pipeServer.SetCommandResult(true, "Connection settings updated successfully");
                 }
                 else
                 {
                     Console.WriteLine("=== Error: No connection settings provided for update ===");
+                    _pipeServer.SetCommandResult(false, "No connection settings provided for update");
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error updating connection settings");
                 Console.WriteLine($"=== Error updating connection settings: {ex.Message} ===");
+                _pipeServer.SetCommandResult(false, $"Error updating connection settings: {ex.Message}");
             }
             
             return Task.CompletedTask;
         }
 
-        private async Task HandleStartTransfer(JsonElement? data)
+        private async Task HandleStartTransfer(object? data)
         {
             try
             {
                 // Get settings from command or use stored settings
                 ConnectionSettings? settings = null;
                 
-                if (data.HasValue && data.Value.ValueKind != JsonValueKind.Null)
+                // Try to convert from JsonElement if that's what we got
+                if (data is JsonElement jsonElement && jsonElement.ValueKind != JsonValueKind.Null)
                 {
-                    settings = JsonSerializer.Deserialize<ConnectionSettings>(data.Value.GetRawText());
+                    settings = JsonSerializer.Deserialize<ConnectionSettings>(jsonElement.GetRawText());
+                }
+                // If data is already a ConnectionSettings object (rare but possible)
+                else if (data is ConnectionSettings connectionSettings)
+                {
+                    settings = connectionSettings;
                 }
                 else if (_lastConnectionSettings != null)
                 {
@@ -232,6 +254,7 @@ namespace DataSyncer.WindowsService
                 else
                 {
                     Console.WriteLine("=== Error: No connection settings available ===");
+                    _pipeServer.SetCommandResult(false, "No connection settings available");
                     return;
                 }
                 
@@ -242,41 +265,48 @@ namespace DataSyncer.WindowsService
                     if (settings.DestinationPath != null) settings.DestinationPath = settings.DestinationPath.Trim('"');
                 
                     if (settings.IsValid())
-                {
-                    _logger.LogInformation($"Starting transfer from {settings.SourcePath} to {settings.DestinationPath}");
-                    Console.WriteLine($"=== Starting transfer from {settings.SourcePath} to {settings.DestinationPath} ===");
-                    
-                    // Check if source file exists
-                    bool sourceExists = !string.IsNullOrEmpty(settings.SourcePath) && 
-                                       System.IO.File.Exists(settings.SourcePath);
-                                       
-                    if (!sourceExists)
                     {
-                        Console.WriteLine($"=== ERROR: Source file not found: {settings.SourcePath} ===");
-                        return;
+                        _logger.LogInformation($"Starting transfer from {settings.SourcePath} to {settings.DestinationPath}");
+                        Console.WriteLine($"=== Starting transfer from {settings.SourcePath} to {settings.DestinationPath} ===");
+                        
+                        // Check if source file exists
+                        bool sourceExists = !string.IsNullOrEmpty(settings.SourcePath) && 
+                                           System.IO.File.Exists(settings.SourcePath);
+                                           
+                        if (!sourceExists)
+                        {
+                            string errorMsg = $"Source file not found: {settings.SourcePath}";
+                            Console.WriteLine($"=== ERROR: {errorMsg} ===");
+                            _pipeServer.SetCommandResult(false, errorMsg);
+                            return;
+                        }
+                        
+                        // Trigger a file transfer using the FileTransferWorker
+                        await _fileTransferWorker.TriggerTransferAsync(settings);
+                        
+                        _logger.LogInformation("Transfer initiated successfully");
+                        Console.WriteLine("=== Transfer initiated successfully ===");
+                        _pipeServer.SetCommandResult(true, "Transfer initiated successfully");
                     }
-                    
-                    // Trigger a file transfer using the FileTransferWorker
-                    await _fileTransferWorker.TriggerTransferAsync(settings);
-                    
-                    _logger.LogInformation("Transfer initiated successfully");
-                    Console.WriteLine("=== Transfer initiated successfully ===");
-                }
-                else
-                {
-                    _logger.LogWarning("Cannot start transfer - invalid connection settings");
-                    Console.WriteLine("=== Cannot start transfer - invalid connection settings ===");
-                    Console.WriteLine($"=== Source: {settings.SourcePath} ===");
-                    Console.WriteLine($"=== Destination: {settings.DestinationPath} ===");
-                    Console.WriteLine($"=== Protocol: {settings.Protocol} ===");
-                    Console.WriteLine($"=== Host: {settings.Host} ===");
-                }
+                    else
+                    {
+                        string errorMsg = "Cannot start transfer - invalid connection settings";
+                        _logger.LogWarning(errorMsg);
+                        Console.WriteLine($"=== {errorMsg} ===");
+                        Console.WriteLine($"=== Source: {settings.SourcePath} ===");
+                        Console.WriteLine($"=== Destination: {settings.DestinationPath} ===");
+                        Console.WriteLine($"=== Protocol: {settings.Protocol} ===");
+                        Console.WriteLine($"=== Host: {settings.Host} ===");
+                        
+                        _pipeServer.SetCommandResult(false, errorMsg);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error starting transfer");
                 Console.WriteLine($"=== Error starting transfer: {ex.Message} ===");
+                _pipeServer.SetCommandResult(false, $"Error starting transfer: {ex.Message}");
             }
         }
 

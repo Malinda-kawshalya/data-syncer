@@ -1,129 +1,139 @@
 using System;
 using System.IO;
+using System.Diagnostics;
 using System.Threading.Tasks;
-using DataSyncer.Core.Interfaces;
+using DataSyncer.Core.DTOs;
 using DataSyncer.Core.Models;
-using DataSyncer.WindowsService.Implementations;
+using DataSyncer.Core.Interfaces;
 using Microsoft.Extensions.Logging;
+using DataSyncer.WindowsService.Implementations;
+using System.Collections.Generic;
 
 namespace DataSyncer.WindowsService.Services
 {
-    public class SimpleTransferExecutor
+    /// <summary>
+    /// Simple executor for file transfers
+    /// </summary>
+    internal static class SimpleTransferExecutor
     {
-        public static async Task ExecuteTransferAsync(ConnectionSettings settings, ILogger logger)
+        /// <summary>
+        /// Executes a file transfer based on the provided connection settings
+        /// </summary>
+        public static async Task ExecuteTransferAsync(ConnectionSettings settings, ILogger logger, LoggingService loggingService, FileTransferServiceFactory transferFactory)
         {
-            logger.LogInformation($"Starting transfer from {settings.SourcePath} to {settings.DestinationPath}");
-            Console.WriteLine($"=== Starting transfer from {settings.SourcePath} to {settings.DestinationPath} ===");
-            Console.WriteLine($"=== Target: {settings.Protocol}://{settings.Host}:{settings.Port} ===");
-
+            var stopwatch = Stopwatch.StartNew();
+            
             try
             {
-                // Check if we're doing a local file transfer
+                logger.LogInformation($"Starting file transfer for connection {settings.Host}");
+                Console.WriteLine($"=== Starting file transfer for {settings.Host} ===");
+                
+                // Determine protocol type (default to LOCAL for local paths)
+                ProtocolType protocol = settings.Protocol;
                 if (IsLocalPath(settings.SourcePath) && IsLocalPath(settings.DestinationPath))
                 {
-                    Console.WriteLine("=== Performing local file transfer ===");
-                    await PerformLocalTransfer(settings, logger);
-                    return;
+                    protocol = ProtocolType.LOCAL;
+                    Console.WriteLine("=== Detected local file transfer ===");
                 }
-
-                // Otherwise, use the appropriate transfer service
-                IFileTransferService transferService = GetTransferService(settings, logger);
                 
-                // First test the connection
-                Console.WriteLine("=== Testing connection... ===");
-                bool connectionSuccess = await transferService.TestConnectionAsync(settings);
+                // Get the appropriate transfer service
+                var transferService = transferFactory.CreateFileTransferService(protocol);
                 
-                if (!connectionSuccess)
+                // Prepare file list
+                var files = new List<FileItem>();
+                
+                // Source path handling
+                string sourcePath = settings.SourcePath?.Trim('\"') ?? string.Empty;
+                
+                if (Directory.Exists(sourcePath))
                 {
-                    logger.LogError("Connection test failed - canceling transfer");
-                    Console.WriteLine("=== Connection test failed - canceling transfer ===");
-                    return;
+                    // Get all files in the directory
+                    foreach (var filePath in Directory.GetFiles(sourcePath))
+                    {
+                        files.Add(new FileItem
+                        {
+                            FileName = Path.GetFileName(filePath),
+                            FullPath = filePath
+                        });
+                    }
+                    
+                    logger.LogInformation($"Found {files.Count} files in {sourcePath}");
+                    Console.WriteLine($"=== Found {files.Count} files in {sourcePath} ===");
                 }
-
-                Console.WriteLine("=== Connection successful - starting file transfer ===");
-                bool transferSuccess = await transferService.TransferFileAsync(settings, settings.SourcePath, settings.DestinationPath);
-
-                if (transferSuccess)
+                else if (File.Exists(sourcePath))
                 {
-                    logger.LogInformation("Transfer completed successfully");
-                    Console.WriteLine("=== Transfer completed successfully ===");
+                    // Single file transfer
+                    files.Add(new FileItem
+                    {
+                        FileName = Path.GetFileName(sourcePath),
+                        FullPath = sourcePath
+                    });
+                    
+                    logger.LogInformation($"Transferring single file: {sourcePath}");
+                    Console.WriteLine($"=== Transferring single file: {sourcePath} ===");
                 }
                 else
                 {
-                    logger.LogError("Transfer failed");
-                    Console.WriteLine("=== Transfer failed ===");
+                    throw new FileNotFoundException($"Source path not found: {sourcePath}");
                 }
+                
+                if (files.Count == 0)
+                {
+                    logger.LogWarning($"No files found to transfer at {sourcePath}");
+                    Console.WriteLine($"=== No files found to transfer at {sourcePath} ===");
+                    
+                    // Log the empty transfer
+                    loggingService.LogTransfer(new TransferResultDto
+                    {
+                        SourcePath = sourcePath,
+                        DestinationPath = settings.DestinationPath,
+                        Protocol = protocol,
+                        Success = true,
+                        ErrorMessage = "No files found to transfer",
+                        Duration = stopwatch.Elapsed,
+                        FileSize = 0
+                    });
+                    
+                    return;
+                }
+                
+                // Execute the transfer using the selected service
+                var result = await transferService.TransferFilesAsync(files, settings, new FilterSettings());
+                
+                // Log the transfer result
+                loggingService.LogTransfer(result);
+                
+                logger.LogInformation($"Transfer completed with status: {(result.Success ? "Success" : "Failed")}");
+                Console.WriteLine($"=== Transfer completed with status: {(result.Success ? "Success" : "Failed")} ===");
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Transfer failed");
+                logger.LogError(ex, "Transfer failed with exception");
                 Console.WriteLine($"=== Transfer failed: {ex.Message} ===");
-                throw;
+                
+                // Log the error
+                loggingService.LogTransfer(new TransferResultDto
+                {
+                    SourcePath = settings.SourcePath,
+                    DestinationPath = settings.DestinationPath,
+                    Protocol = settings.Protocol,
+                    Success = false,
+                    ErrorMessage = $"Transfer failed: {ex.Message}",
+                    Duration = stopwatch.Elapsed,
+                    FileSize = 0
+                });
             }
         }
         
+        /// <summary>
+        /// Checks if a path is a local path
+        /// </summary>
         private static bool IsLocalPath(string path)
         {
-            return !string.IsNullOrEmpty(path) && 
-                   (path.Contains(":\\") || path.StartsWith("\\\\"));
-        }
-        
-        private static Task PerformLocalTransfer(ConnectionSettings settings, ILogger logger)
-        {
-            try
-            {
-                // Remove any quotes that might be in the path (common when copying from UI)
-                string sourcePath = settings.SourcePath?.Trim('"') ?? string.Empty;
-                string destPath = settings.DestinationPath?.Trim('"') ?? string.Empty;
+            if (string.IsNullOrEmpty(path))
+                return false;
                 
-                Console.WriteLine($"=== Local transfer from {sourcePath} to {destPath} ===");
-                
-                // Check if source exists
-                if (!File.Exists(sourcePath))
-                {
-                    logger.LogError($"Source file does not exist: {sourcePath}");
-                    Console.WriteLine($"=== Source file does not exist: {sourcePath} ===");
-                    return Task.CompletedTask;
-                }
-                
-                // Ensure destination directory exists
-                string? destDir = Path.GetDirectoryName(destPath);
-                if (!string.IsNullOrEmpty(destDir) && !Directory.Exists(destDir))
-                {
-                    Directory.CreateDirectory(destDir);
-                }
-                
-                // If destination is a directory, append the filename
-                if (Directory.Exists(destPath))
-                {
-                    destPath = Path.Combine(destPath, Path.GetFileName(sourcePath));
-                }
-                
-                // Perform the copy
-                Console.WriteLine($"=== Copying {sourcePath} to {destPath} ===");
-                File.Copy(sourcePath, destPath, true);
-                
-                logger.LogInformation($"File copied from {sourcePath} to {destPath}");
-                Console.WriteLine($"=== File successfully copied to: {destPath} ===");
-                return Task.CompletedTask;
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, "Local file transfer failed");
-                Console.WriteLine($"=== Local file transfer failed: {ex.Message} ===");
-                return Task.CompletedTask;
-            }
-        }
-        
-        private static IFileTransferService GetTransferService(ConnectionSettings settings, ILogger logger)
-        {
-            // Create the appropriate logger type with a cast - not ideal but works for demo
-            return settings.Protocol switch
-            {
-                ProtocolType.FTP => new FluentFtpTransfer((ILogger<FluentFtpTransfer>)(object)logger),
-                ProtocolType.SFTP => new SshNetTransfer((ILogger<SshNetTransfer>)(object)logger),
-                _ => new DataSyncer.Core.Services.FileTransferService()
-            };
+            return Path.IsPathRooted(path) || path.StartsWith("./") || path.StartsWith("../");
         }
     }
 }
