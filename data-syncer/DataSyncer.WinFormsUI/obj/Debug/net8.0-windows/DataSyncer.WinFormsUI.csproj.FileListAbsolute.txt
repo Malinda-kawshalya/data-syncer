@@ -58,3 +58,4 @@ E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\bin\Debug\net8.0-wi
 E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\bin\Debug\net8.0-windows\DataSyncer.Core.dll
 E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\bin\Debug\net8.0-windows\DataSyncer.Core.pdb
 E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\DataSync.ABC90FAC.Up2Date
+E:\data syncer\data-syncer\data-syncer\DataSyncer.WinFormsUI\obj\Debug\net8.0-windows\DataSyncer.WinFormsUI.FormFilters.resources

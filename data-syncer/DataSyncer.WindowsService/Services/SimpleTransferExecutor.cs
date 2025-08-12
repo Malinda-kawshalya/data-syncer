@@ -25,15 +25,15 @@ namespace DataSyncer.WindowsService.Services
             
             try
             {
-                logger.LogInformation($"Starting file transfer for connection {settings.Host}");
-                Console.WriteLine($"=== Starting file transfer for {settings.Host} ===");
+                logger.LogInformation("Starting file transfer for Host: {host}, Protocol: {protocol}", 
+                    settings.Host ?? "LOCAL", settings.Protocol);
                 
                 // Determine protocol type (default to LOCAL for local paths)
                 ProtocolType protocol = settings.Protocol;
-                if (IsLocalPath(settings.SourcePath) && IsLocalPath(settings.DestinationPath))
+                if (protocol != ProtocolType.LOCAL && IsLocalPath(settings.SourcePath) && IsLocalPath(settings.DestinationPath))
                 {
                     protocol = ProtocolType.LOCAL;
-                    Console.WriteLine("=== Detected local file transfer ===");
+                    logger.LogDebug("Auto-detected local file transfer based on paths");
                 }
                 
                 // Get the appropriate transfer service
@@ -50,27 +50,31 @@ namespace DataSyncer.WindowsService.Services
                     // Get all files in the directory
                     foreach (var filePath in Directory.GetFiles(sourcePath))
                     {
+                        var fileInfo = new FileInfo(filePath);
                         files.Add(new FileItem
                         {
-                            FileName = Path.GetFileName(filePath),
-                            FullPath = filePath
+                            FileName = fileInfo.Name,
+                            FullPath = filePath,
+                            SizeBytes = fileInfo.Length,
+                            LastModified = fileInfo.LastWriteTime
                         });
                     }
                     
-                    logger.LogInformation($"Found {files.Count} files in {sourcePath}");
-                    Console.WriteLine($"=== Found {files.Count} files in {sourcePath} ===");
+                    logger.LogInformation("Found {fileCount} files in directory: {sourcePath}", files.Count, sourcePath);
                 }
                 else if (File.Exists(sourcePath))
                 {
                     // Single file transfer
+                    var fileInfo = new FileInfo(sourcePath);
                     files.Add(new FileItem
                     {
-                        FileName = Path.GetFileName(sourcePath),
-                        FullPath = sourcePath
+                        FileName = fileInfo.Name,
+                        FullPath = sourcePath,
+                        SizeBytes = fileInfo.Length,
+                        LastModified = fileInfo.LastWriteTime
                     });
                     
-                    logger.LogInformation($"Transferring single file: {sourcePath}");
-                    Console.WriteLine($"=== Transferring single file: {sourcePath} ===");
+                    logger.LogInformation("Transferring single file: {fileName} ({size} bytes)", fileInfo.Name, fileInfo.Length);
                 }
                 else
                 {
@@ -79,8 +83,7 @@ namespace DataSyncer.WindowsService.Services
                 
                 if (files.Count == 0)
                 {
-                    logger.LogWarning($"No files found to transfer at {sourcePath}");
-                    Console.WriteLine($"=== No files found to transfer at {sourcePath} ===");
+                    logger.LogWarning("No files found to transfer at: {sourcePath}", sourcePath);
                     
                     // Log the empty transfer
                     loggingService.LogTransfer(new TransferResultDto
@@ -103,13 +106,12 @@ namespace DataSyncer.WindowsService.Services
                 // Log the transfer result
                 loggingService.LogTransfer(result);
                 
-                logger.LogInformation($"Transfer completed with status: {(result.Success ? "Success" : "Failed")}");
-                Console.WriteLine($"=== Transfer completed with status: {(result.Success ? "Success" : "Failed")} ===");
+                logger.LogInformation("Transfer completed - Status: {status}, Files: {count}, Duration: {duration}ms", 
+                    result.Success ? "Success" : "Failed", files.Count, stopwatch.ElapsedMilliseconds);
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Transfer failed with exception");
-                Console.WriteLine($"=== Transfer failed: {ex.Message} ===");
+                logger.LogError(ex, "Transfer failed: {message}", ex.Message);
                 
                 // Log the error
                 loggingService.LogTransfer(new TransferResultDto
@@ -122,18 +124,28 @@ namespace DataSyncer.WindowsService.Services
                     Duration = stopwatch.Elapsed,
                     FileSize = 0
                 });
+                
+                throw; // Re-throw to let caller handle the exception
             }
         }
         
         /// <summary>
         /// Checks if a path is a local path
         /// </summary>
-        private static bool IsLocalPath(string path)
+        private static bool IsLocalPath(string? path)
         {
             if (string.IsNullOrEmpty(path))
                 return false;
                 
-            return Path.IsPathRooted(path) || path.StartsWith("./") || path.StartsWith("../");
+            string cleanPath = path.Trim().Trim('"');
+            
+            // Check for Windows drive letter pattern (C:\) or UNC path (\\server\)
+            return (cleanPath.Length >= 3 && 
+                    char.IsLetter(cleanPath[0]) && 
+                    cleanPath[1] == ':' && 
+                    (cleanPath[2] == '\\' || cleanPath[2] == '/')) || 
+                   cleanPath.StartsWith("\\\\") ||
+                   Path.IsPathRooted(cleanPath);
         }
     }
 }

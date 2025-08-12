@@ -22,11 +22,6 @@ var host = Host.CreateDefaultBuilder(args)
         // Register the factory
         services.AddSingleton<FileTransferServiceFactory>();
         
-        // Register the IFileTransferService as a factory
-        services.AddSingleton<IFileTransferService>(provider => 
-            provider.GetRequiredService<FileTransferServiceFactory>()
-                .CreateFileTransferService(DataSyncer.Core.Models.ProtocolType.FTP));
-        
         // Logging service
         services.AddSingleton<LoggingService>();
 

@@ -9,6 +9,7 @@ using DataSyncer.Core.Interfaces;
 using DataSyncer.Core.DTOs;
 using DataSyncer.Core.Models;
 using DataSyncer.Core.Services;
+using DataSyncer.WindowsService.Implementations;
 
 namespace DataSyncer.WindowsService.Services
 {
@@ -16,10 +17,12 @@ namespace DataSyncer.WindowsService.Services
     public class TransferJob : IJob
     {
         private readonly ILogger<TransferJob> _logger;
+        private readonly FileTransferServiceFactory _transferFactory;
 
-        public TransferJob(ILogger<TransferJob> logger)
+        public TransferJob(ILogger<TransferJob> logger, FileTransferServiceFactory transferFactory)
         {
             _logger = logger;
+            _transferFactory = transferFactory;
         }
 
         public async Task Execute(IJobExecutionContext context)
@@ -157,15 +160,8 @@ namespace DataSyncer.WindowsService.Services
                     return;
                 }
                 
-                // Create the appropriate transfer service based on protocol
-                IFileTransferService transferService = connection.Protocol switch
-                {
-                    ProtocolType.FTP => new DataSyncer.WindowsService.Implementations.FluentFtpTransfer(
-                        (ILogger<DataSyncer.WindowsService.Implementations.FluentFtpTransfer>)(object)_logger),
-                    ProtocolType.SFTP => new DataSyncer.WindowsService.Implementations.SshNetTransfer(
-                        (ILogger<DataSyncer.WindowsService.Implementations.SshNetTransfer>)(object)_logger),
-                    _ => new DataSyncer.Core.Services.FileTransferService()
-                };
+                // Create the appropriate transfer service using the factory
+                var transferService = _transferFactory.CreateFileTransferService(connection.Protocol);
                 
                 // Execute the transfer
                 var result = await transferService.TransferFilesAsync(files, connection, filters);
@@ -173,7 +169,7 @@ namespace DataSyncer.WindowsService.Services
                 // Log results
                 foreach (var log in result.Logs)
                 {
-                    if (log.Status.Equals("Success", StringComparison.OrdinalIgnoreCase))
+                    if (log.Status?.Equals("Success", StringComparison.OrdinalIgnoreCase) == true)
                     {
                         _logger.LogInformation("{time} | {file} | {status} | {msg}", 
                             log.Timestamp, log.FileName, log.Status, log.Message);

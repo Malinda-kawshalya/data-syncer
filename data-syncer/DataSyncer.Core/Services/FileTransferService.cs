@@ -8,6 +8,11 @@ using DataSyncer.Core.Exceptions;
 
 namespace DataSyncer.Core.Services
 {
+    /// <summary>
+    /// Generic fallback implementation of IFileTransferService
+    /// This is primarily used for testing and as a base implementation
+    /// Production code should use the specialized implementations in DataSyncer.WindowsService
+    /// </summary>
     public class FileTransferService : IFileTransferService
     {
         public async Task<TransferResultDto> TransferFilesAsync(List<FileItem> files, ConnectionSettings connection, FilterSettings filters)

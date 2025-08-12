@@ -9,9 +9,9 @@ using DataSyncer.Core.DTOs;
 
 namespace DataSyncer.WindowsService.Implementations
 {
-    /// <summary>
+
     /// Implementation of IFileTransferService for local file transfers between directories
-    /// </summary>
+
     public class LocalFileTransfer : IFileTransferService
     {
         private readonly ILogger<LocalFileTransfer> _logger;
@@ -21,9 +21,9 @@ namespace DataSyncer.WindowsService.Implementations
             _logger = logger;
         }
 
-        /// <summary>
+
         /// Transfers multiple files from source to destination directory
-        /// </summary>
+
         public async Task<TransferResultDto> TransferFilesAsync(List<FileItem> files, ConnectionSettings connection, FilterSettings filters)
         {
             var result = new TransferResultDto 
@@ -124,9 +124,9 @@ namespace DataSyncer.WindowsService.Implementations
             return result;
         }
 
-        /// <summary>
+
         /// Tests if local file transfer is possible by checking directory access
-        /// </summary>
+
         public async Task<bool> TestConnectionAsync(ConnectionSettings connection)
         {
             try
@@ -204,9 +204,9 @@ namespace DataSyncer.WindowsService.Implementations
             }
         }
 
-        /// <summary>
+
         /// Transfers a single file from source to destination path
-        /// </summary>
+
         public async Task<bool> TransferFileAsync(ConnectionSettings connection, string sourcePath, string destinationPath)
         {
             try

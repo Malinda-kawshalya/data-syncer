@@ -34,10 +34,9 @@ namespace DataSyncer.WindowsService.Services
             }
         }
         
-        /// <summary>
+        
         /// Logs a file transfer
-        /// </summary>
-        /// <param name="result">Result of the transfer</param>
+
         public void LogTransfer(TransferResultDto result)
         {
             var log = new TransferLog
@@ -62,10 +61,9 @@ namespace DataSyncer.WindowsService.Services
             _ = WritePendingLogsAsync();
         }
         
-        /// <summary>
+   
         /// Retrieves all transfer logs
-        /// </summary>
-        /// <returns>List of transfer logs</returns>
+
         public List<TransferLog> GetAllLogs()
         {
             try
@@ -85,12 +83,9 @@ namespace DataSyncer.WindowsService.Services
             }
         }
         
-        /// <summary>
+
         /// Retrieves transfer logs that match the given filter
-        /// </summary>
-        /// <param name="filter">Optional filter string to match against log fields</param>
-        /// <param name="maxResults">Maximum number of results to return</param>
-        /// <returns>Filtered list of transfer logs</returns>
+
         public List<TransferLog> GetLogs(string? filter = null, int maxResults = 100)
         {
             var allLogs = GetAllLogs();
@@ -120,9 +115,9 @@ namespace DataSyncer.WindowsService.Services
             return allLogs;
         }
         
-        /// <summary>
+
         /// Clears all logs
-        /// </summary>
+
         public void ClearLogs()
         {
             try
@@ -135,9 +130,9 @@ namespace DataSyncer.WindowsService.Services
             }
         }
         
-        /// <summary>
+
         /// Writes pending logs to the log file
-        /// </summary>
+
         private async Task WritePendingLogsAsync()
         {
             // Prevent multiple concurrent writes

@@ -28,29 +28,23 @@ namespace DataSyncer.WinFormsUI.Utilities
             _ = SendConnectionUpdateAsync(settings);
         }
         
-        /// <summary>
-        /// Sends updated connection settings to the service
-        /// </summary>
-        /// <param name="settings">The connection settings to send</param>
-        /// <returns>True if the settings were successfully sent</returns>
+
         public async Task<bool> SendConnectionUpdateAsync(ConnectionSettings settings)
         {
             return await _pipeClient.SendCommandAsync("UPDATE_CONNECTION", settings);
         }
         
-        /// <summary>
+    
         /// Tests the connection to the Windows service
-        /// </summary>
-        /// <returns>True if the service is responding</returns>
+       
         public async Task<bool> TestServiceConnectionAsync()
         {
             return await _pipeClient.TestConnectionAsync();
         }
         
-        /// <summary>
+
         /// Tests the connection to the Windows service
-        /// </summary>
-        /// <returns>True if the service is responding</returns>
+
         public async Task<bool> IsServiceConnectedAsync()
         {
             return await _pipeClient.TestConnectionAsync();

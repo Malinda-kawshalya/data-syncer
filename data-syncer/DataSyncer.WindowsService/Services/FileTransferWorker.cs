@@ -76,12 +76,14 @@ namespace DataSyncer.WindowsService.Services
 
         public async Task TriggerTransferAsync(ConnectionSettings settings)
         {
-            _logger.LogInformation($"Triggering file transfer for {settings.Host}");
+            _logger.LogInformation("Triggering file transfer for Host: {host}, Protocol: {protocol}", 
+                settings.Host ?? "LOCAL", settings.Protocol);
 
             try
             {
                 // Execute transfer using the simple executor with the factory
                 await SimpleTransferExecutor.ExecuteTransferAsync(settings, _logger, _loggingService, _transferFactory);
+                _logger.LogInformation("Transfer completed successfully");
             }
             catch (Exception ex)
             {
@@ -118,7 +120,6 @@ namespace DataSyncer.WindowsService.Services
                 if (settings == null)
                 {
                     _logger.LogError("Connection settings are null");
-                    Console.WriteLine("=== Error: Connection settings are null ===");
                     return false;
                 }
                 
@@ -128,7 +129,6 @@ namespace DataSyncer.WindowsService.Services
                 if (IsLocalTransfer(settings))
                 {
                     _logger.LogInformation("Local file transfer - validating paths");
-                    Console.WriteLine("=== Local file transfer - validating paths ===");
                     
                     // Clean and normalize the paths
                     string sourcePath = settings.SourcePath?.Trim().Trim('"') ?? string.Empty;
@@ -138,8 +138,7 @@ namespace DataSyncer.WindowsService.Services
                     sourcePath = sourcePath.Replace('/', '\\');
                     destPath = destPath.Replace('/', '\\');
                     
-                    Console.WriteLine($"=== Source path: {sourcePath} ===");
-                    Console.WriteLine($"=== Destination path: {destPath} ===");
+                    _logger.LogDebug("Source path: {sourcePath}, Destination path: {destPath}", sourcePath, destPath);
                     
                     // For source, check if file exists or directory exists
                     bool sourceValid = false;
@@ -149,81 +148,79 @@ namespace DataSyncer.WindowsService.Services
                         bool dirExists = Directory.Exists(sourcePath);
                         sourceValid = fileExists || dirExists;
                         
-                        Console.WriteLine($"=== Source path: {sourcePath} ===");
-                        Console.WriteLine($"=== File exists: {fileExists} ===");
-                        Console.WriteLine($"=== Directory exists: {dirExists} ===");
-                        Console.WriteLine($"=== Source path valid: {sourceValid} ===");
+                        _logger.LogDebug("Source validation - File exists: {fileExists}, Directory exists: {dirExists}, Valid: {sourceValid}", 
+                            fileExists, dirExists, sourceValid);
                         
-                        // Check if file might exist with slightly different path
+                        // If source not found, provide diagnostic information
                         if (!sourceValid)
                         {
                             try
                             {
                                 string directory = Path.GetDirectoryName(sourcePath) ?? string.Empty;
-                                string filename = Path.GetFileName(sourcePath);
                                 if (Directory.Exists(directory))
                                 {
-                                    Console.WriteLine($"=== Directory exists: {directory} ===");
                                     var files = Directory.GetFiles(directory);
-                                    Console.WriteLine($"=== Files in directory: {files.Length} ===");
-                                    foreach (var file in files.Take(5)) // List up to 5 files to avoid flooding logs
-                                    {
-                                        Console.WriteLine($"=== Found file: {Path.GetFileName(file)} ===");
-                                    }
+                                    _logger.LogDebug("Directory exists but file not found. Directory: {directory}, Files count: {count}", 
+                                        directory, files.Length);
+                                    
+                                    // Log first few file names for debugging
+                                    var sampleFiles = files.Take(3).Select(Path.GetFileName);
+                                    _logger.LogDebug("Sample files in directory: {files}", string.Join(", ", sampleFiles));
                                 }
                                 else
                                 {
-                                    Console.WriteLine($"=== Directory does not exist: {directory} ===");
+                                    _logger.LogWarning("Directory does not exist: {directory}", directory);
                                 }
                             }
                             catch (Exception ex)
                             {
-                                Console.WriteLine($"=== Error checking directory: {ex.Message} ===");
+                                _logger.LogError(ex, "Error checking directory: {message}", ex.Message);
                             }
                         }
                     }
                     
-                    // For destination, just check it's not empty
-                    bool destValid = !string.IsNullOrEmpty(destPath);
-                    Console.WriteLine($"=== Destination path valid: {destValid} ===");
+                    // For destination, validate path format and parent directory
+                    bool destValid = !string.IsNullOrEmpty(destPath) && ValidateDestinationPath(destPath);
+                    _logger.LogDebug("Destination path valid: {destValid}", destValid);
                     
                     return sourceValid && destValid;
                 }
                 
                 // For remote transfers
-                // Create the appropriate transfer service based on protocol
                 var transferService = GetTransferService(settings);
                 if (transferService != null)
                 {
                     return await transferService.TestConnectionAsync(settings);
                 }
                 
-                _logger.LogWarning($"No transfer service found for protocol: {settings.Protocol}");
-                Console.WriteLine($"=== No transfer service found for protocol: {settings.Protocol} ===");
+                _logger.LogWarning("No transfer service found for protocol: {protocol}", settings.Protocol);
                 return false;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error testing connection: {ex.Message}");
-                Console.WriteLine($"=== Error testing connection: {ex.Message} ===");
+                _logger.LogError(ex, "Error testing connection: {message}", ex.Message);
                 return false;
             }
         }
         
         private bool IsLocalTransfer(ConnectionSettings settings)
         {
+            // Check if protocol is explicitly set to LOCAL
+            if (settings.Protocol == ProtocolType.LOCAL)
+                return true;
+                
             // Consider it a local transfer if:
-            // 1. Both paths are local OR
-            // 2. Protocol is FTP but host is localhost or 127.0.0.1
+            // 1. Both paths are local file paths OR
+            // 2. Host is localhost/127.0.0.1 (for backward compatibility)
             bool bothPathsLocal = IsLocalPath(settings.SourcePath) && IsLocalPath(settings.DestinationPath);
             bool isLocalhost = settings.Host?.ToLower() == "localhost" || settings.Host == "127.0.0.1";
             
             return bothPathsLocal || isLocalhost;
         }
         
-        /// <summary>
+        
         /// Gets the appropriate transfer service based on connection protocol using the factory
-        /// </summary>
+       
         private IFileTransferService GetTransferService(ConnectionSettings settings)
         {
             return _transferFactory.CreateFileTransferService(settings.Protocol);
@@ -243,6 +240,34 @@ namespace DataSyncer.WindowsService.Services
                     cleanPath[1] == ':' && 
                     (cleanPath[2] == '\\' || cleanPath[2] == '/')) || 
                    cleanPath.StartsWith("\\\\");
+        }
+
+      
+        /// Validates if the destination path format is correct and parent directory exists
+        
+        private bool ValidateDestinationPath(string destPath)
+        {
+            if (string.IsNullOrEmpty(destPath))
+                return false;
+
+            try
+            {
+                // Check if it's a valid path format
+                string? parentDir = Path.GetDirectoryName(destPath);
+                
+                // If destination is a directory path, check if it exists or can be created
+                if (destPath.EndsWith("\\") || destPath.EndsWith("/"))
+                {
+                    return Directory.Exists(destPath) || Directory.Exists(parentDir ?? string.Empty);
+                }
+                
+                // If destination is a file path, check if parent directory exists
+                return !string.IsNullOrEmpty(parentDir) && Directory.Exists(parentDir);
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

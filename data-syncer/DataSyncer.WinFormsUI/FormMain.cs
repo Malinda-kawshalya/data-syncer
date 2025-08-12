@@ -204,7 +204,7 @@ namespace DataSyncer.WinFormsUI
 
         private void ShowAbout()
         {
-            MessageBox.Show("DataSyncer v1.0\nA simple file synchronization tool\n\nFeatures:\n- FTP/SFTP support\n- Scheduled transfers\n- File filtering", 
+            MessageBox.Show("DataSyncer v1.0\nA file synchronization tool\n\nSupported Protocols:\n- FTP\n- SFTP\n- LOCAL (file system)\n\nFeatures:\n- Scheduled transfers\n- File filtering\n- Transfer logging", 
                 "About DataSyncer", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
